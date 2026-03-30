@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Så mycket sparar du på att gå ur Svenska kyrkan 2026</title>
+<meta name="description" content="Kyrkoavgiften kostar en genomsnittlig löntagare 4 000–6 000 kr per år. Se exakt vad du betalar i din församling och hur mycket du sparar om du väljer att gå ur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0E0F11; --surface: #161719; --surface2: #1E2023;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+  --ink: #F0EEE8; --ink2: #9B9A96; --ink3: #5C5B58;
+  --ice: #A8D4E6; --ice-dim: rgba(168,212,230,0.10);
+  --pine: #4E9B7A; --pine-dim: rgba(78,155,122,0.12);
+  --amber: #D4884A; --amber-dim: rgba(212,136,74,0.12);
+  --red: #C0584A; --gold: #C8A96E;
+  --radius: 14px; --radius-sm: 8px;
+}
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.75; font-size: 17px; font-weight: 300; }
+nav { border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(14,15,17,0.93); backdrop-filter: blur(12px); z-index: 100; }
+.nav-logo { font-size: 1rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+.nav-logo span { color: var(--ice); }
+.nav-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--ice-dim); border: 1px solid rgba(168,212,230,0.2); color: var(--ice); font-size: 0.82rem; font-weight: 500; padding: 8px 16px; border-radius: 99px; text-decoration: none; transition: background 0.15s; }
+.nav-cta:hover { background: rgba(168,212,230,0.18); }
+.hero { padding: 72px 24px 56px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(168,212,230,0.07) 0%, transparent 70%); pointer-events: none; }
+.hero-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ice); opacity: 0.7; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; max-width: 680px; margin: 0 auto 20px; position: relative; }
+.hero h1 em { font-style: normal; color: var(--ice); }
+.hero-meta { font-size: 13px; color: var(--ink3); display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink3); }
+.container { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+.toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 48px; }
+.toc-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; }
+.toc ol { list-style: none; counter-reset: toc; }
+.toc ol li { counter-increment: toc; display: flex; align-items: baseline; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.toc ol li:last-child { border-bottom: none; }
+.toc ol li::before { content: counter(toc, decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink3); flex-shrink: 0; }
+.toc ol li a { font-size: 14px; color: var(--ink2); text-decoration: none; transition: color 0.15s; }
+.toc ol li a:hover { color: var(--ice); }
+h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin: 48px 0 16px; line-height: 1.2; }
+h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin: 28px 0 10px; }
+p { color: var(--ink2); margin-bottom: 18px; font-weight: 300; }
+strong { color: var(--ink); font-weight: 500; }
+a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(168,212,230,0.3); transition: border-color 0.15s; }
+a:hover { border-color: var(--ice); }
+.fact-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--ice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin: 28px 0; }
+.fact-box.green { border-left-color: var(--pine); }
+.fact-box.amber { border-left-color: var(--amber); }
+.fact-box.gold { border-left-color: var(--gold); }
+.fact-box .fb-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ice); margin-bottom: 8px; }
+.fact-box.green .fb-label { color: var(--pine); }
+.fact-box.amber .fb-label { color: var(--amber); }
+.fact-box.gold .fb-label { color: var(--gold); }
+.fact-box p { margin-bottom: 0; }
+
+/* Calculator */
+.calc-tool { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin: 32px 0; }
+.calc-tool-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 20px; }
+.calc-row-input { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+@media (max-width: 500px) { .calc-row-input { grid-template-columns: 1fr; } }
+.calc-field label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink2); margin-bottom: 6px; }
+.calc-field input, .calc-field select { width: 100%; padding: 11px 14px; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius-sm); font-family: 'Outfit', sans-serif; font-size: 0.94rem; color: var(--ink); appearance: none; }
+.calc-field input:focus, .calc-field select:focus { outline: none; border-color: rgba(168,212,230,0.5); }
+.select-wrap { position: relative; }
+.select-wrap::after { content: '▾'; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--ink3); pointer-events: none; }
+select option { background: #1E2023; }
+.calc-result { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; margin-top: 16px; }
+.cr-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .cr-grid { grid-template-columns: 1fr 1fr; } }
+.cr-item .cr-label { font-size: 10px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+.cr-item .cr-val { font-family: 'DM Mono', monospace; font-size: 1.2rem; font-weight: 500; }
+.cr-item .cr-val.gold { color: var(--gold); }
+.cr-item .cr-val.green { color: var(--pine); }
+.cr-item .cr-val.year { color: var(--ice); }
+
+.data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+.data-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); padding: 10px 14px; border-bottom: 1px solid var(--border2); }
+.data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--ink2); }
+.data-table td:last-child { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--gold); text-align: right; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--surface2); }
+
+.steps { margin: 28px 0; }
+.step { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.step:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink3); flex-shrink: 0; margin-top: 2px; }
+.step-content h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+.step-content p { font-size: 14px; color: var(--ink2); margin: 0; }
+
+.cta-banner { background: var(--ice-dim); border: 1px solid rgba(168,212,230,0.2); border-radius: var(--radius); padding: 32px; text-align: center; margin: 48px 0; }
+.cta-banner h3 { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.cta-banner p { font-size: 0.9rem; color: var(--ink2); margin-bottom: 20px; max-width: 420px; margin-left: auto; margin-right: auto; }
+.cta-btn { display: inline-block; background: var(--ice); color: #0E0F11; font-size: 0.9rem; font-weight: 600; padding: 13px 28px; border-radius: 99px; text-decoration: none; border: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.88; }
+.related { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin: 48px 0; }
+.related-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 16px; }
+.related-links { display: flex; flex-direction: column; gap: 10px; }
+.related-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); font-size: 14px; font-weight: 500; transition: border-color 0.15s; }
+.related-link:hover { border-color: var(--border2); }
+.related-link .arrow { color: var(--ink3); font-size: 12px; }
+footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 12px; color: var(--ink3); line-height: 1.9; }
+footer a { color: var(--ink3); border-bottom: 1px solid var(--border); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">lön<span>efterskatt</span>.com</a>
+  <a href="/" class="nav-cta">Räkna ut din lön →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Guide · Uppdaterad 2026</div>
+  <h1>Så mycket sparar du på att gå ur <em>Svenska kyrkan</em></h1>
+  <div class="hero-meta">
+    <span>Lästid: ~4 minuter</span>
+    <span class="dot"></span>
+    <span>Uppdaterad mars 2026</span>
+    <span class="dot"></span>
+    <span>Källa: Svenska kyrkan &amp; Skatteverket</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <div class="toc-title">Innehåll</div>
+    <ol>
+      <li><a href="#vad-kostar">Vad kostar kyrkoavgiften?</a></li>
+      <li><a href="#rakna">Räkna ut din kyrkoavgift</a></li>
+      <li><a href="#varierar">Varför varierar avgiften?</a></li>
+      <li><a href="#ga-ur">Hur går man ur Svenska kyrkan?</a></li>
+      <li><a href="#konsekvenser">Vad förlorar du när du går ur?</a></li>
+    </ol>
+  </div>
+
+  <h2 id="vad-kostar">Vad kostar kyrkoavgiften?</h2>
+  <p>Kyrkoavgiften är en procentandel av din beskattningsbara inkomst och dras automatiskt via skattsedeln om du är medlem i Svenska kyrkan. Riksgenomsnittet för 2026 är <strong>1,05%</strong> — men den varierar kraftigt mellan olika församlingar, från 0,665% i Lidingö till 1,85% i Hedebygdens församling.</p>
+  <p>För en person med 35 000 kr i månadslön kan kyrkoavgiften kosta mellan <strong>2 600 och 7 000 kr per år</strong> beroende på var i landet man bor.</p>
+
+  <div class="fact-box gold">
+    <div class="fb-label">Rikssnitt 2026</div>
+    <p>Genomsnittlig kyrkoavgift i Sverige 2026: <strong>1,05%</strong> av den kommunalt beskattningsbara inkomsten. En person med 40 000 kr/mån betalar i snitt ungefär <strong>420 kr per månad</strong>, eller 5 040 kr per år.</p>
+  </div>
+
+  <h2 id="rakna">Räkna ut din kyrkoavgift</h2>
+  <p>Använd miniräknaren nedan för att se exakt vad du betalar — och vad du skulle spara på att gå ur.</p>
+
+  <div class="calc-tool">
+    <div class="calc-tool-title">Din kyrkoavgift 2026</div>
+    <div class="calc-row-input">
+      <div class="calc-field">
+        <label>Månadslön (kr)</label>
+        <input type="number" id="salary" value="35000" min="0" oninput="calculateKyrka()">
+      </div>
+      <div class="calc-field">
+        <label>Kyrkoavgift (%)</label>
+        <div class="select-wrap">
+          <select id="rate" onchange="calculateKyrka()">
+            <option value="1.05" selected>Rikssnitt (1,05%)</option>
+            <option value="0.665">Lidingö / S:t Matteus – lägst (0,665%)</option>
+            <option value="0.71">Österåkers pastorat (0,71%)</option>
+            <option value="0.73">Katarina f:ling, Stockholm (0,73%)</option>
+            <option value="0.76">Adolf Fredriks f:ling (0,76%)</option>
+            <option value="0.80">Oscars f:ling, Stockholm (0,80%)</option>
+            <option value="0.91">Örebro pastorat (0,91%)</option>
+            <option value="0.93">Linköpings domkyrka (0,93%)</option>
+            <option value="0.95">Göteborgs domkyrka (0,95%)</option>
+            <option value="1.00">Helsingborg / Malmö (1,00%)</option>
+            <option value="1.05">Uppsala domkyrka (1,05%)</option>
+            <option value="1.08">Umeå stadsf:ling (1,08%)</option>
+            <option value="1.10">Lunds pastorat (1,10%)</option>
+            <option value="1.20">Sundsvalls pastorat (1,20%)</option>
+            <option value="1.265">Skara pastorat (1,265%)</option>
+            <option value="1.40">Dorotea pastorat (1,40%)</option>
+            <option value="1.85">Hedebygden / Folingbo – högst (1,85%)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="cr-grid">
+        <div class="cr-item">
+          <div class="cr-label">Per månad</div>
+          <div class="cr-val gold" id="res-month">–</div>
+        </div>
+        <div class="cr-item">
+          <div class="cr-label">Per år</div>
+          <div class="cr-val year" id="res-year">–</div>
+        </div>
+        <div class="cr-item">
+          <div class="cr-label">På 10 år</div>
+          <div class="cr-val green" id="res-10y">–</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="varierar">Varför varierar avgiften så mycket?</h2>
+  <p>Varje församling i Svenska kyrkan beslutar själv om sin kyrkoavgift. Det är kyrkofullmäktige — den lokala demokratin inom kyrkan — som bestämmer procentsatsen, precis som kommunfullmäktige bestämmer kommunalskatten.</p>
+  <p>Faktorer som påverkar nivån är antalet medlemmar i förhållande till kyrkans kostnader, hur många och hur stora kyrkobyggnader som ska underhållas, och hur aktiv verksamhet församlingen bedriver.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Församling</th><th>Kyrkoavgift 2026</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lidingö / S:t Matteus, Stockholm (lägst)</td><td>0,665%</td></tr>
+      <tr><td>Österåkers pastorat</td><td>0,71%</td></tr>
+      <tr><td>Stockholms innerstadsförsamlingar (snitt)</td><td>0,75–0,90%</td></tr>
+      <tr><td>Rikssnitt 2026</td><td>1,05%</td></tr>
+      <tr><td>Skara pastorat</td><td>1,265%</td></tr>
+      <tr><td>Dorotea pastorat</td><td>1,40%</td></tr>
+      <tr><td>Hedebygdens / Folingbo (högst)</td><td>1,85%</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="ga-ur">Hur går man ur Svenska kyrkan?</h2>
+  <p>Att lämna Svenska kyrkan är gratis och relativt enkelt, men processen är avsiktligt lite manuell — du kan <strong>inte</strong> gå ur via BankID eller digitalt.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>Skriv en utträdesanmälan</h4>
+        <p>Det kan vara ett brev eller en blankett. Den måste vara egenhändigt undertecknad med för- och efternamn, personnummer och adress. Ladda ner blankett på <strong>svenskakyrkan.se</strong>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>Skicka till din församling</h4>
+        <p>Postar du anmälan skickar du den till den församling du tillhör. Vet du inte vilken det är kan du ta reda på det via "Sök församling" på Svenska kyrkans hemsida.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>Tidpunkten är avgörande</h4>
+        <p>Du måste vara utträdd <strong>senast 1 november</strong> för att slippa betala kyrkoavgiften nästkommande år. Går du ur i december 2026 betalar du fortfarande kyrkoavgift hela 2027.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h4>Bekräftelse skickas hem</h4>
+        <p>Inom några veckor får du en bekräftelse per brev. Utträdet syns sedan på din nästkommande deklaration där kyrkoavgiftsraden försvinner.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fact-box amber">
+    <div class="fb-label">Tänk på deadlinen</div>
+    <p>Är det nu oktober eller november? Kontrollera exakt datum. Anmälan måste vara <em>mottagen och behandlad</em> av din församling senast 1 november — inte bara inskickad. Skicka i god tid.</p>
+  </div>
+
+  <h2 id="konsekvenser">Vad förlorar du när du går ur?</h2>
+  <p>Kyrkoavgiften ger tillgång till Svenska kyrkans tjänster som medlem. Att gå ur innebär att du inte längre automatiskt har rätt till:</p>
+  <p><strong>Kyrklig begravning</strong> i Svenska kyrkans ordning — kontakta din lokala församling för alternativ om detta är viktigt för dig. <strong>Vigsel i kyrkan</strong> — möjligt i vissa fall mot en avgift, kontakta aktuell församling. <strong>Rösträtt i kyrkovalet</strong> — du kan inte längre påverka kyrkans demokratiska processer.</p>
+  <p>Det som <em>inte</em> förändras: du betalar fortfarande <strong>begravningsavgiften</strong> (0,292% av beskattningsbar inkomst 2026) — den är obligatorisk för alla folkbokförda i Sverige oavsett religiös tillhörighet och finansierar begravningsplatser och krematorier.</p>
+
+  <div class="fact-box green">
+    <div class="fb-label">Begravningsavgiften är inte kyrkoavgiften</div>
+    <p>Begravningsavgiften (0,292%) betalas av alla — oavsett om du är med i kyrkan eller inte. Det är kyrkoavgiften (rikssnitt 1,05%) som försvinner om du går ur. De är två olika avgifter och syns separat på deklarationen.</p>
+  </div>
+
+  <div class="cta-banner">
+    <h3>Är du med i Svenska kyrkan? Se vad det kostar dig</h3>
+    <p>Aktivera kyrkoavgiften i kalkylatorn — välj din församling och se exakt vad det kostar varje månad.</p>
+    <a href="/" class="cta-btn">Öppna kalkylatorn →</a>
+  </div>
+
+  <div class="related">
+    <div class="related-title">Läs mer</div>
+    <div class="related-links">
+      <a href="/artikel-1-varfor-forsvinner-lon-i-skatt.html" class="related-link">
+        Varför försvinner så mycket av min lön i skatt?
+        <span class="arrow">→</span>
+      </a>
+      <a href="/kommunalskatt-2026.html" class="related-link">
+        Topplista: Kommunerna med lägst skatt i Sverige 2026
+        <span class="arrow">→</span>
+      </a>
+      <a href="/grundavdrag-2026.html" class="related-link">
+        Visste du att de första 44 200 kronorna du tjänar är helt skattefria?
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  lonefterskatt.com · Information baseras på Svenska kyrkans och Skatteverkets officiella uppgifter för 2026.<br>
+  Informationen är vägledande och ska inte ses som skatterådgivning. <a href="/">Tillbaka till kalkylatorn</a>
+</footer>
+
+<script>
+function calculateKyrka() {
+  const salary = parseFloat(document.getElementById('salary').value) || 0;
+  const rate   = parseFloat(document.getElementById('rate').value) / 100;
+  const yearIncome = salary * 12;
+  // Kyrkoavgift beräknas på taxerad inkomst ≈ brutto - grundavdrag
+  const ga = yearIncome > 468600 ? 15400
+           : yearIncome > 367700 ? 47100 - (yearIncome - 367700) * (31700/100900)
+           : yearIncome > 199700 ? 47100
+           : yearIncome > 124200 ? 44200 + (yearIncome - 124200) * (3000/75500)
+           : yearIncome > 44200  ? 44200 : yearIncome;
+  const taxable = Math.max(0, yearIncome - ga);
+  const yearly  = taxable * rate;
+  const monthly = yearly / 12;
+
+  const fmt = n => Math.round(n).toLocaleString('sv-SE') + ' kr';
+  document.getElementById('res-month').textContent = fmt(monthly);
+  document.getElementById('res-year').textContent  = fmt(yearly);
+  document.getElementById('res-10y').textContent   = fmt(yearly * 10);
+}
+calculateKyrka();
+</script>
+</body>
+</html>

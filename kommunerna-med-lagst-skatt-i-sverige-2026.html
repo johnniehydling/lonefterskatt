@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topplista: Kommunerna med lägst skatt i Sverige 2026</title>
+<meta name="description" content="Vilken kommun har lägst kommunalskatt 2026? Vi listar alla 290 kommuner – från Österåker (28,93%) till Dorotea (35,65%). Se hur mycket du kan spara på att bo rätt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0E0F11; --surface: #161719; --surface2: #1E2023;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+  --ink: #F0EEE8; --ink2: #9B9A96; --ink3: #5C5B58;
+  --ice: #A8D4E6; --ice-dim: rgba(168,212,230,0.10);
+  --pine: #4E9B7A; --pine-dim: rgba(78,155,122,0.12);
+  --amber: #D4884A; --red: #C0584A;
+  --radius: 14px; --radius-sm: 8px;
+}
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.75; font-size: 17px; font-weight: 300; }
+nav { border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(14,15,17,0.93); backdrop-filter: blur(12px); z-index: 100; }
+.nav-logo { font-size: 1rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+.nav-logo span { color: var(--ice); }
+.nav-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--ice-dim); border: 1px solid rgba(168,212,230,0.2); color: var(--ice); font-size: 0.82rem; font-weight: 500; padding: 8px 16px; border-radius: 99px; text-decoration: none; transition: background 0.15s; }
+.nav-cta:hover { background: rgba(168,212,230,0.18); }
+.hero { padding: 72px 24px 56px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(168,212,230,0.07) 0%, transparent 70%); pointer-events: none; }
+.hero-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ice); opacity: 0.7; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; max-width: 680px; margin: 0 auto 20px; position: relative; }
+.hero h1 em { font-style: normal; color: var(--ice); }
+.hero-meta { font-size: 13px; color: var(--ink3); display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink3); }
+.container { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin: 48px 0 16px; line-height: 1.2; }
+h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin: 28px 0 10px; }
+p { color: var(--ink2); margin-bottom: 18px; font-weight: 300; }
+strong { color: var(--ink); font-weight: 500; }
+a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(168,212,230,0.3); transition: border-color 0.15s; }
+a:hover { border-color: var(--ice); }
+.fact-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--ice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin: 28px 0; }
+.fact-box.green { border-left-color: var(--pine); }
+.fact-box.amber { border-left-color: var(--amber); }
+.fact-box .fb-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ice); margin-bottom: 8px; }
+.fact-box.green .fb-label { color: var(--pine); }
+.fact-box.amber .fb-label { color: var(--amber); }
+.fact-box p { margin-bottom: 0; }
+
+/* Search */
+.search-wrap { position: relative; margin-bottom: 16px; }
+.search-wrap input { width: 100%; padding: 12px 16px 12px 40px; background: var(--surface2); border: 1px solid var(--border2); border-radius: var(--radius-sm); font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--ink); transition: border-color 0.15s; }
+.search-wrap input::placeholder { color: var(--ink3); }
+.search-wrap input:focus { outline: none; border-color: rgba(168,212,230,0.5); box-shadow: 0 0 0 3px rgba(168,212,230,0.08); }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink3); font-size: 14px; pointer-events: none; }
+.filter-row { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.filter-btn { padding: 6px 14px; border: 1px solid var(--border2); border-radius: 99px; background: transparent; color: var(--ink3); font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+.filter-btn:hover, .filter-btn.active { background: var(--ice-dim); border-color: rgba(168,212,230,0.3); color: var(--ice); }
+#result-count { font-size: 12px; color: var(--ink3); margin-bottom: 12px; }
+
+/* Table */
+.rank-table { width: 100%; border-collapse: collapse; }
+.rank-table thead th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); padding: 10px 14px; border-bottom: 1px solid var(--border2); cursor: pointer; user-select: none; white-space: nowrap; }
+.rank-table thead th:hover { color: var(--ice); }
+.rank-table thead th.sorted { color: var(--ice); }
+.rank-table thead th .sort-arrow { margin-left: 4px; opacity: 0.5; }
+.rank-table thead th.sorted .sort-arrow { opacity: 1; }
+.rank-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+.rank-table tbody tr:hover { background: var(--surface2); }
+.rank-table tbody tr:last-child { border-bottom: none; }
+.rank-table td { padding: 11px 14px; font-size: 14px; color: var(--ink2); }
+.rank-table td.rank { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink3); width: 40px; }
+.rank-table td.kommun-name { color: var(--ink); font-weight: 500; }
+.rank-table td.rate { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--ink); text-align: right; }
+.rank-table td.bar-cell { width: 120px; padding-right: 8px; }
+.rate-bar-track { height: 4px; background: var(--surface3); border-radius: 99px; overflow: hidden; }
+.rate-bar-fill { height: 100%; border-radius: 99px; background: var(--ice); }
+.badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; margin-left: 6px; vertical-align: middle; }
+.badge-low { background: var(--pine-dim); color: var(--pine); }
+.badge-high { background: rgba(192,88,74,0.12); color: var(--red); }
+
+.savings-box { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin: 32px 0; }
+.savings-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 20px; }
+.savings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.savings-item { text-align: center; }
+.savings-label { font-size: 12px; color: var(--ink3); margin-bottom: 6px; }
+.savings-val { font-family: 'DM Mono', monospace; font-size: 1.4rem; font-weight: 500; color: var(--ice); }
+.savings-sub { font-size: 11px; color: var(--ink3); margin-top: 4px; }
+
+.cta-banner { background: var(--ice-dim); border: 1px solid rgba(168,212,230,0.2); border-radius: var(--radius); padding: 32px; text-align: center; margin: 48px 0; }
+.cta-banner h3 { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.cta-banner p { font-size: 0.9rem; color: var(--ink2); margin-bottom: 20px; max-width: 420px; margin-left: auto; margin-right: auto; }
+.cta-btn { display: inline-block; background: var(--ice); color: #0E0F11; font-size: 0.9rem; font-weight: 600; padding: 13px 28px; border-radius: 99px; text-decoration: none; border: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.88; }
+
+.related { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin: 48px 0; }
+.related-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 16px; }
+.related-links { display: flex; flex-direction: column; gap: 10px; }
+.related-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); font-size: 14px; font-weight: 500; transition: border-color 0.15s; }
+.related-link:hover { border-color: var(--border2); }
+.related-link .arrow { color: var(--ink3); font-size: 12px; }
+
+footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 12px; color: var(--ink3); line-height: 1.9; }
+footer a { color: var(--ink3); border-bottom: 1px solid var(--border); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">lön<span>efterskatt</span>.com</a>
+  <a href="/" class="nav-cta">Räkna ut din lön →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Topplista · Uppdaterad december 2025</div>
+  <h1>Kommunerna med <em>lägst skatt</em> i Sverige 2026</h1>
+  <div class="hero-meta">
+    <span>Alla 290 kommuner</span>
+    <span class="dot"></span>
+    <span>Källa: SCB</span>
+    <span class="dot"></span>
+    <span>Uppdaterad mars 2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <p>Skillnaden i kommunalskatt kan kosta dig tiotusentals kronor om året. Österåker med 28,93% och Dorotea med 35,65% — samma lön, nästan 7 procentenheter skillnad. Här är alla 290 kommuners skattesatser för 2026, sökbara och sorterbara.</p>
+
+  <div class="savings-box">
+    <div class="savings-title">Vad kostar 7 procentenheter i praktiken?</div>
+    <div class="savings-grid">
+      <div class="savings-item">
+        <div class="savings-label">Månadslön 35 000 kr</div>
+        <div class="savings-val">~2 100 kr</div>
+        <div class="savings-sub">mer per månad i lägsta vs högsta kommunen</div>
+      </div>
+      <div class="savings-item">
+        <div class="savings-label">Månadslön 50 000 kr</div>
+        <div class="savings-val">~3 000 kr</div>
+        <div class="savings-sub">mer per månad i lägsta vs högsta kommunen</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fact-box">
+    <div class="fb-label">Varför varierar kommunalskatten?</div>
+    <p>Kommuner med ett lägre skatteunderlag — färre invånare med höga inkomster — behöver ta ut högre skatt för att finansiera skola, vård och omsorg. Välbärgade kommuner nära storstäder har ofta lägst skatt. Det finns även ett statligt utjämningssystem som delvis jämnar ut skillnaderna.</p>
+  </div>
+
+  <h2>Sök bland alla 290 kommuner</h2>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Sök din kommun..." oninput="filterTable()">
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="setFilter('all', this)">Alla</button>
+    <button class="filter-btn" onclick="setFilter('low', this)">Under 30%</button>
+    <button class="filter-btn" onclick="setFilter('mid', this)">30–33%</button>
+    <button class="filter-btn" onclick="setFilter('high', this)">Över 33%</button>
+  </div>
+  <div id="result-count"></div>
+
+  <table class="rank-table" id="rankTable">
+    <thead>
+      <tr>
+        <th class="rank" onclick="sortTable(0)">#</th>
+        <th onclick="sortTable(1)">Kommun <span class="sort-arrow">↕</span></th>
+        <th onclick="sortTable(2)" class="sorted">Skatt 2026 <span class="sort-arrow">↑</span></th>
+        <th>Fördelning</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <div class="cta-banner">
+    <h3>Hur mycket får du ut med din kommuns skattesats?</h3>
+    <p>Välj din kommun i kalkylatorn och se exakt vad du tar hem efter skatt — med jobbskatteavdrag och grundavdrag inräknat.</p>
+    <a href="/" class="cta-btn">Räkna ut din lön →</a>
+  </div>
+
+  <h2>Varför bor folk i kommuner med hög skatt?</h2>
+  <p>Frågan är rimlig — men skatten är sällan det enda som avgör var man väljer att bo. Faktorer som jobb, familj, boendekostnader och service väger tyngre för de flesta. En billig bostad i en högskattkommun kan vara mer ekonomiskt fördelaktig totalt sett än ett dyrt boende i en lågskattkommun.</p>
+  <p>Det är också värt att notera att <strong>kommunalskatten inte finansierar hela bilden</strong>. En del av skatten går till regionen för sjukvård, och kommuner med lägre skatt har ibland färre eller sämre lokala tjänster — det är en politisk avvägning som varierar mellan kommuner.</p>
+
+  <div class="fact-box green">
+    <div class="fb-label">Rikssnittet 2026</div>
+    <p>Den genomsnittliga kommunalskatten i Sverige 2026 är <strong>32,38%</strong>, vilket är en marginell sänkning med 3 öre jämfört med 2025. 45 kommuner sänkte skatten, 16 höjde den.</p>
+  </div>
+
+  <div class="related">
+    <div class="related-title">Läs mer</div>
+    <div class="related-links">
+      <a href="/artikel-1-varfor-forsvinner-lon-i-skatt.html" class="related-link">
+        Varför försvinner så mycket av min lön i skatt?
+        <span class="arrow">→</span>
+      </a>
+      <a href="/jobbskatteavdrag-2026.html" class="related-link">
+        Jobbskatteavdraget: Så mycket mindre skatt betalar du som jobbar
+        <span class="arrow">→</span>
+      </a>
+      <a href="/grundavdrag-2026.html" class="related-link">
+        Visste du att de första 44 200 kronorna du tjänar är helt skattefria?
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  lonefterskatt.com · Skattesatser från SCB, publicerade december 2025. Gäller inkomstår 2026.<br>
+  <a href="/">Tillbaka till kalkylatorn</a>
+</footer>
+
+<script>
+const kommuner = [
+  ["Österåker",28.93],["Kävlinge",29.59],["Lidingö",29.67],["Solna",29.70],
+  ["Nacka",30.11],["Staffanstorp",30.12],["Danderyd",30.58],["Lomma",30.72],
+  ["Höganäs",30.91],["Stockholm",30.55],["Sollentuna",30.45],["Huddinge",31.71],
+  ["Burlöv",31.27],["Haninge",31.28],["Helsingborg",31.39],["Båstad",31.41],
+  ["Landskrona",31.42],["Svedala",31.42],["Partille",31.36],["Järfälla",31.52],
+  ["Ekerö",31.45],["Linköping",31.75],["Eslöv",31.72],["Simrishamn",31.69],
+  ["Skurup",31.60],["Sundbyberg",31.58],["Nykvarn",32.30],["Sigtuna",31.83],
+  ["Täby",31.90],["Vallentuna",31.90],["Härryda",31.98],["Mölndal",31.99],
+  ["Perstorp",31.99],["Salem",32.00],["Lerum",32.03],["Norrtälje",32.05],
+  ["Sjöbo",32.10],["Upplands-Bro",32.15],["Åstorp",32.15],["Upplands Väsby",31.88],
+  ["Bjuv",32.17],["Nynäshamn",32.18],["Uppvidinge",32.30],["Botkyrka",32.23],
+  ["Nyköping",32.25],["Hörby",32.26],["Vellinge",32.27],["Knivsta",32.62],
+  ["Tomelilla",32.48],["Timrå",32.49],["Strängnäs",32.50],["Varberg",32.50],
+  ["Falkenberg",32.50],["Tranås",32.37],["Trollhättan",32.37],["Trosa",32.37],
+  ["Vårgårda",32.37],["Värmdö",32.37],["Älmhult",32.37],["Tingsryd",32.16],
+  ["Vadstena",31.68],["Valdemarsvik",32.41],["Lund",32.42],["Malmö",32.42],
+  ["Halmstad",32.38],["Hässleholm",32.38],["Göteborg",32.60],["Höör",32.63],
+  ["Kristianstad",32.64],["Västerås",31.65],["Ystad",31.64],["Vaggeryd",32.19],
+  ["Svalöv",31.92],["Skövde",33.09],["Sandviken",33.12],["Hudiksvall",33.12],
+  ["Stenungsund",33.12],["Tyresö",32.31],["Kungsbacka",32.58],["Kungsör",32.91],
+  ["Kungälv",32.92],["Katrineholm",32.95],["Gnesta",32.95],["Fagersta",32.99],
+  ["Mark",32.99],["Borås",32.79],["Karlsborg",32.80],["Ale",32.80],
+  ["Laholm",32.80],["Alingsås",32.84],["Eskilstuna",32.85],["Köping",33.04],
+  ["Essunga",33.05],["Enköping",33.05],["Oxelösund",33.05],["Bollebygd",33.07],
+  ["Ljungby",33.07],["Öckerö",33.08],["Södertälje",32.75],["Hallstahammar",32.69],
+  ["Lidköping",32.74],["Mariestad",32.74],["Växjö",32.67],["Skara",33.38],
+  ["Tjörn",33.38],["Jönköping",33.40],["Östra Göinge",33.40],["Markaryd",33.31],
+  ["Håbo",33.30],["Norrköping",33.30],["Skinnskatteberg",33.34],["Sala",33.19],
+  ["Surahammar",33.19],["Uppsala",33.18],["Söderhamn",33.17],["Vansbro",33.16],
+  ["Norberg",33.54],["Strömstad",33.39],["Alvesta",33.42],["Vänersborg",33.42],
+  ["Falköping",33.43],["Borgholm",33.44],["Mjölby",33.45],["Åre",33.45],
+  ["Grästorp",33.47],["Sotenäs",33.47],["Hjo",33.48],["Vingåker",32.49],
+  ["Söderköping",33.53],["Svenljunga",33.53],["Karlstad",33.55],["Piteå",33.59],
+  ["Gotland",33.60],["Götene",33.60],["Tierp",33.62],["Herrljunga",33.62],
+  ["Lekeberg",33.73],["Bromölla",33.74],["Gislaved",33.75],["Olofström",33.75],
+  ["Sunne",33.75],["Gävle",33.77],["Hultsfred",33.77],["Älvkarleby",33.67],
+  ["Kalmar",33.67],["Ronneby",33.68],["Sävsjö",33.68],["Torsås",33.68],
+  ["Östersund",34.60],["Älvsbyn",33.52],["Sandviken",33.12],["Östhammar",33.62],
+  ["Orust",33.69],["Karlskrona",33.69],["Kinda",33.00],["Motala",33.25],
+  ["Mullsjö",34.10],["Leksand",33.80],["Ljusnarsberg",33.80],["Rättvik",33.80],
+  ["Säffle",33.80],["Karlshamn",33.80],["Emmaboda",33.82],["Lessebo",33.81],
+  ["Ulricehamn",33.81],["Sundsvall",33.88],["Krokom",33.87],["Ljusdal",33.87],
+  ["Gällivare",33.89],["Kalix",33.89],["Umeå",34.75],["Haparanda",33.84],
+  ["Kumla",33.84],["Luleå",33.84],["Heby",34.21],["Hedemora",34.15],
+  ["Vara",33.41],["Osby",33.99],["Gnosjö",34.00],["Eksjö",34.02],
+  ["Nordanstig",34.02],["Arvika",34.03],["Falun",34.05],["Ludvika",34.05],
+  ["Mönsterås",34.07],["Mörbylånga",34.07],["Högsby",34.07],["Mellerud",34.08],
+  ["Gullspång",33.97],["Habo",33.93],["Åmål",33.88],["Töreboda",33.88],
+  ["Tibro",33.92],["Vetlanda",33.92],["Askersund",34.15],["Tidaholm",33.48],
+  ["Nybro",34.19],["Oskarshamn",34.21],["Gagnef",34.27],["Ockelbo",34.27],
+  ["Jokkmokk",34.29],["Hagfors",34.30],["Munkfors",34.30],["Nässjö",34.30],
+  ["Orsa",34.30],["Säter",34.30],["Ånge",34.30],["Karlskoga",34.30],
+  ["Mora",34.32],["Avesta",33.95],["Berg",34.22],["Hofors",34.37],
+  ["Hällefors",34.35],["Bengtsfors",34.40],["Borlänge",34.40],["Smedjebacken",34.44],
+  ["Malung-Sälen",34.45],["Skellefteå",34.45],["Nora",34.55],["Eda",34.55],
+  ["Filipstad",34.55],["Lindesberg",34.60],["Forshaga",34.63],["Härnösand",34.63],
+  ["Kil",34.63],["Kiruna",34.39],["Kristinehamn",34.25],["Dals-Ed",34.69],
+  ["Färgelanda",34.39],["Arjeplog",34.84],["Munkedal",34.86],["Lycksele",34.90],
+  ["Storuman",34.95],["Storfors",34.98],["Laxå",35.00],["Bjurholm",35.00],
+  ["Robertsfors",35.00],["Hammarö",35.05],["Bräcke",35.09],["Nordmaling",35.10],
+  ["Malå",35.20],["Norsjö",35.20],["Vindeln",35.20],["Vännäs",35.20],
+  ["Härjedalen",34.17],["Pajala",34.74],["Ragunda",34.92],["Strömsund",34.92],
+  ["Arvidsjaur",34.14],["Boden",33.94],["Åsele",34.67],["Sollefteå",34.68],
+  ["Uddevalla",34.65],["Sorsele",35.45],["Degerfors",35.30],["Dorotea",35.65]
+];
+
+let sortCol = 2, sortAsc = true, currentFilter = 'all';
+
+function getFilteredData() {
+  const q = document.getElementById('search').value.toLowerCase();
+  return kommuner.filter(([name, rate]) => {
+    if (!name.toLowerCase().includes(q)) return false;
+    if (currentFilter === 'low' && rate >= 30) return false;
+    if (currentFilter === 'mid' && (rate < 30 || rate >= 33)) return false;
+    if (currentFilter === 'high' && rate < 33) return false;
+    return true;
+  });
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+function filterTable() { renderTable(); }
+
+function sortTable(col) {
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = col !== 2; }
+  document.querySelectorAll('.rank-table thead th').forEach((th, i) => {
+    th.classList.toggle('sorted', i === col);
+    const arrow = th.querySelector('.sort-arrow');
+    if (arrow) arrow.textContent = (i === col) ? (sortAsc ? '↑' : '↓') : '↕';
+  });
+  renderTable();
+}
+
+function renderTable() {
+  const data = getFilteredData();
+  data.sort((a, b) => {
+    let va = sortCol === 1 ? a[0] : a[1];
+    let vb = sortCol === 1 ? b[0] : b[1];
+    if (typeof va === 'string') return sortAsc ? va.localeCompare(vb, 'sv') : vb.localeCompare(va, 'sv');
+    return sortAsc ? va - vb : vb - va;
+  });
+
+  const min = 28.93, max = 35.65, span = max - min;
+  const body = document.getElementById('tableBody');
+  body.innerHTML = data.map(([name, rate], i) => {
+    const barW = ((rate - min) / span * 100).toFixed(1);
+    const badge = rate < 30 ? '<span class="badge badge-low">Låg</span>'
+                : rate > 34 ? '<span class="badge badge-high">Hög</span>' : '';
+    return `<tr>
+      <td class="rank">${i + 1}</td>
+      <td class="kommun-name">${name}${badge}</td>
+      <td class="rate">${rate.toFixed(2).replace('.', ',')}%</td>
+      <td class="bar-cell"><div class="rate-bar-track"><div class="rate-bar-fill" style="width:${barW}%"></div></div></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('result-count').textContent =
+    `Visar ${data.length} av ${kommuner.length} kommuner`;
+}
+
+renderTable();
+</script>
+</body>
+</html>

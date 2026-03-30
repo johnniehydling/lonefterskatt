@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobbskatteavdraget 2026 – Så mycket mindre skatt betalar du som jobbar</title>
+<meta name="description" content="Jobbskatteavdraget ger dig upp till 36 800 kr i lägre skatt per år. Vi förklarar hur det fungerar, hur mycket du får och varför pensionärer inte omfattas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0E0F11; --surface: #161719; --surface2: #1E2023;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+  --ink: #F0EEE8; --ink2: #9B9A96; --ink3: #5C5B58;
+  --ice: #A8D4E6; --ice-dim: rgba(168,212,230,0.10);
+  --pine: #4E9B7A; --pine-dim: rgba(78,155,122,0.12);
+  --amber: #D4884A; --red: #C0584A;
+  --radius: 14px; --radius-sm: 8px;
+}
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.75; font-size: 17px; font-weight: 300; }
+nav { border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(14,15,17,0.93); backdrop-filter: blur(12px); z-index: 100; }
+.nav-logo { font-size: 1rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+.nav-logo span { color: var(--ice); }
+.nav-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--ice-dim); border: 1px solid rgba(168,212,230,0.2); color: var(--ice); font-size: 0.82rem; font-weight: 500; padding: 8px 16px; border-radius: 99px; text-decoration: none; transition: background 0.15s; }
+.nav-cta:hover { background: rgba(168,212,230,0.18); }
+.hero { padding: 72px 24px 56px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(168,212,230,0.07) 0%, transparent 70%); pointer-events: none; }
+.hero-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ice); opacity: 0.7; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; max-width: 680px; margin: 0 auto 20px; position: relative; }
+.hero h1 em { font-style: normal; color: var(--ice); }
+.hero-meta { font-size: 13px; color: var(--ink3); display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink3); }
+.container { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+.toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 48px; }
+.toc-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; }
+.toc ol { list-style: none; counter-reset: toc; }
+.toc ol li { counter-increment: toc; display: flex; align-items: baseline; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.toc ol li:last-child { border-bottom: none; }
+.toc ol li::before { content: counter(toc, decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink3); flex-shrink: 0; }
+.toc ol li a { font-size: 14px; color: var(--ink2); text-decoration: none; transition: color 0.15s; }
+.toc ol li a:hover { color: var(--ice); }
+h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin: 48px 0 16px; line-height: 1.2; }
+h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin: 28px 0 10px; }
+p { color: var(--ink2); margin-bottom: 18px; font-weight: 300; }
+strong { color: var(--ink); font-weight: 500; }
+a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(168,212,230,0.3); transition: border-color 0.15s; }
+a:hover { border-color: var(--ice); }
+.fact-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--ice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin: 28px 0; }
+.fact-box.green { border-left-color: var(--pine); }
+.fact-box.amber { border-left-color: var(--amber); }
+.fact-box.red { border-left-color: var(--red); }
+.fact-box .fb-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ice); margin-bottom: 8px; }
+.fact-box.green .fb-label { color: var(--pine); }
+.fact-box.amber .fb-label { color: var(--amber); }
+.fact-box.red .fb-label { color: var(--red); }
+.fact-box p { margin-bottom: 0; }
+.data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+.data-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink3); padding: 10px 14px; border-bottom: 1px solid var(--border2); }
+.data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--ink2); }
+.data-table td:last-child { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--pine); text-align: right; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--surface2); }
+.big-number { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; text-align: center; margin: 32px 0; }
+.big-number .bn-val { font-family: 'DM Mono', monospace; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 500; color: var(--ice); line-height: 1; margin-bottom: 8px; }
+.big-number .bn-label { font-size: 14px; color: var(--ink2); }
+.big-number .bn-sub { font-size: 12px; color: var(--ink3); margin-top: 6px; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+@media (max-width: 500px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.compare-card .cc-title { font-size: 12px; font-weight: 600; color: var(--ink3); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.1em; }
+.compare-card .cc-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.compare-card .cc-row:last-child { border-bottom: none; font-weight: 600; font-size: 14px; }
+.compare-card .cc-row .cv { font-family: 'DM Mono', monospace; }
+.compare-card.highlight { border-color: rgba(78,155,122,0.3); }
+.compare-card.highlight .cc-row:last-child .cv { color: var(--pine); }
+.cta-banner { background: var(--ice-dim); border: 1px solid rgba(168,212,230,0.2); border-radius: var(--radius); padding: 32px; text-align: center; margin: 48px 0; }
+.cta-banner h3 { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.cta-banner p { font-size: 0.9rem; color: var(--ink2); margin-bottom: 20px; max-width: 420px; margin-left: auto; margin-right: auto; }
+.cta-btn { display: inline-block; background: var(--ice); color: #0E0F11; font-size: 0.9rem; font-weight: 600; padding: 13px 28px; border-radius: 99px; text-decoration: none; border: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.88; }
+.related { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin: 48px 0; }
+.related-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 16px; }
+.related-links { display: flex; flex-direction: column; gap: 10px; }
+.related-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); font-size: 14px; font-weight: 500; transition: border-color 0.15s; }
+.related-link:hover { border-color: var(--border2); }
+.related-link .arrow { color: var(--ink3); font-size: 12px; }
+footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 12px; color: var(--ink3); line-height: 1.9; }
+footer a { color: var(--ink3); border-bottom: 1px solid var(--border); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">lön<span>efterskatt</span>.com</a>
+  <a href="/" class="nav-cta">Räkna ut din lön →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Guide · Uppdaterad 2026</div>
+  <h1>Jobbskatteavdraget: Så mycket <em>mindre skatt</em> betalar du som jobbar</h1>
+  <div class="hero-meta">
+    <span>Lästid: ~4 minuter</span>
+    <span class="dot"></span>
+    <span>Uppdaterad mars 2026</span>
+    <span class="dot"></span>
+    <span>Källa: Skatteverket</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <div class="toc-title">Innehåll</div>
+    <ol>
+      <li><a href="#vad-ar">Vad är jobbskatteavdraget?</a></li>
+      <li><a href="#hur-mycket">Hur mycket får du 2026?</a></li>
+      <li><a href="#exempel">Exempel vid olika lönenivåer</a></li>
+      <li><a href="#pensionar">Varför får pensionärer inte avdraget?</a></li>
+      <li><a href="#lon-vs-pension">Lön vs pension – skattemässiga skillnaden</a></li>
+    </ol>
+  </div>
+
+  <h2 id="vad-ar">Vad är jobbskatteavdraget?</h2>
+  <p>Jobbskatteavdraget är en av de viktigaste — och mest missförstådda — delarna av det svenska skattesystemet. Det är en <strong>direkt rabatt på din skatt</strong>, inte ett avdrag på din inkomst. Det är skillnaden som gör att din effektiva skattesats ofta är 6–9 procentenheter lägre än kommunalskatten i din kommun.</p>
+  <p>Tanken bakom det är enkel: det ska löna sig att arbeta. Avdraget finns alltså inte för att vara snällt — det är ett politiskt verktyg för att göra skillnaden mellan att jobba och att inte jobba ekonomiskt kännbar.</p>
+
+  <div class="fact-box green">
+    <div class="fb-label">Det viktigaste att förstå</div>
+    <p>Jobbskatteavdraget är ingen ansökan och inget du behöver göra något för att få. Det räknas ut automatiskt av Skatteverket och dras av direkt från din skatteräkning — inte från din inkomst, utan från skatten själv.</p>
+  </div>
+
+  <h2 id="hur-mycket">Hur mycket får du 2026?</h2>
+  <p>Jobbskatteavdraget beräknas utifrån din inkomst och din kommuns skattesats. Det ökar med inkomsten upp till en viss nivå och trappas sedan ned för höga inkomster. För 2026 höjdes avdraget — särskilt för dem med lön mellan 20 000–55 000 kr per månad.</p>
+
+  <div class="big-number">
+    <div class="bn-val">36 800 kr</div>
+    <div class="bn-label">Maximalt jobbskatteavdrag per år 2026</div>
+    <div class="bn-sub">motsvarar ~3 067 kr per månad i lägre skatt</div>
+  </div>
+
+  <p>Det maximala avdraget nås vid inkomster runt 35 000–50 000 kr per månad beroende på var du bor. Vid lägre inkomster är avdraget proportionellt lägre, och vid mycket höga inkomster (över ca 66 000 kr/mån) börjar det trappas ned.</p>
+
+  <h2 id="exempel">Exempel vid olika lönenivåer</h2>
+  <p>Så här ser jobbskatteavdraget ut i kronor per månad vid olika lönenivåer, beräknat med rikssnittet för kommunalskatt (32,38%):</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Månadslön</th>
+        <th>Jobbskatteavdrag / år</th>
+        <th>Per månad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>15 000 kr</td><td>9 800 kr</td><td>~817 kr</td></tr>
+      <tr><td>20 000 kr</td><td>15 200 kr</td><td>~1 267 kr</td></tr>
+      <tr><td>25 000 kr</td><td>19 500 kr</td><td>~1 625 kr</td></tr>
+      <tr><td>30 000 kr</td><td>23 100 kr</td><td>~1 925 kr</td></tr>
+      <tr><td>35 000 kr</td><td>26 400 kr</td><td>~2 200 kr</td></tr>
+      <tr><td>40 000 kr</td><td>29 600 kr</td><td>~2 467 kr</td></tr>
+      <tr><td>50 000 kr</td><td>34 900 kr</td><td>~2 908 kr</td></tr>
+      <tr><td>60 000 kr</td><td>36 800 kr (max)</td><td>~3 067 kr</td></tr>
+    </tbody>
+  </table>
+
+  <div class="fact-box amber">
+    <div class="fb-label">Kommunalskatten påverkar beloppet</div>
+    <p>Bor du i en kommun med hög kommunalskatt får du ett något lägre jobbskatteavdrag i kronor räknat, och vice versa. Det beror på att avdraget beräknas som en procentandel av kommunalskatten.</p>
+  </div>
+
+  <h2 id="pensionar">Varför får pensionärer inte avdraget?</h2>
+  <p>Det korta svaret: jobbskatteavdraget gäller bara <strong>inkomst av tjänst</strong> — det vill säga lön, arvode och liknande. Pension räknas inte som löneinkomst i Skatteverkets ögon och omfattas därför inte.</p>
+  <p>Det kan verka orättvist — och det var länge en politisk het potatis. Sedan 2023 har dock skillnaden minskat betydligt tack vare det förhöjda grundavdraget för pensionärer, som delvis kompenserar för det uteblivna jobbskatteavdraget.</p>
+
+  <div class="fact-box">
+    <div class="fb-label">Jobbar du efter 66?</div>
+    <p>Har du fyllt 66 och fortsätter arbeta får du <strong>jobbskatteavdrag på löneinkomsten</strong> precis som alla andra — och dessutom det förhöjda grundavdraget. Det kan göra det mycket skattemässigt fördelaktigt att kombinera pension med deltidsarbete.</p>
+  </div>
+
+  <h2 id="lon-vs-pension">Lön vs pension – den skattemässiga skillnaden</h2>
+  <p>För att göra det konkret — en person med 25 000 kr per månad i lön jämfört med en pensionär med 25 000 kr per månad i pension, båda i Stockholm (30,55%):</p>
+
+  <div class="compare-grid">
+    <div class="compare-card highlight">
+      <div class="cc-title">Löntagare · 25 000 kr/mån</div>
+      <div class="cc-row"><span>Kommunalskatt</span><span class="cv">−6 200 kr</span></div>
+      <div class="cc-row"><span>Jobbskatteavdrag</span><span class="cv">+1 900 kr</span></div>
+      <div class="cc-row"><span>Grundavdrag (effekt)</span><span class="cv">+1 100 kr</span></div>
+      <div class="cc-row"><span>Lön efter skatt</span><span class="cv">~21 800 kr</span></div>
+    </div>
+    <div class="compare-card">
+      <div class="cc-title">Pensionär · 25 000 kr/mån</div>
+      <div class="cc-row"><span>Kommunalskatt</span><span class="cv">−6 200 kr</span></div>
+      <div class="cc-row"><span>Jobbskatteavdrag</span><span class="cv">+0 kr</span></div>
+      <div class="cc-row"><span>Förhöjt grundavdrag</span><span class="cv">+1 700 kr</span></div>
+      <div class="cc-row"><span>Pension efter skatt</span><span class="cv">~20 500 kr</span></div>
+    </div>
+  </div>
+
+  <p>Skillnaden på ungefär <strong>1 300 kr per månad</strong> beror nästan uteslutande på jobbskatteavdraget. Det förhöjda grundavdraget för pensionärer minskar gapet, men täcker det inte helt.</p>
+
+  <div class="cta-banner">
+    <h3>Se exakt hur mycket jobbskatteavdrag du får</h3>
+    <p>Ange din lön och din kommun i kalkylatorn — jobbskatteavdraget räknas ut automatiskt baserat på dina uppgifter.</p>
+    <a href="/" class="cta-btn">Öppna kalkylatorn →</a>
+  </div>
+
+  <div class="related">
+    <div class="related-title">Läs mer</div>
+    <div class="related-links">
+      <a href="/artikel-1-varfor-forsvinner-lon-i-skatt.html" class="related-link">
+        Varför försvinner så mycket av min lön i skatt?
+        <span class="arrow">→</span>
+      </a>
+      <a href="/grundavdrag-2026.html" class="related-link">
+        Visste du att de första 44 200 kronorna du tjänar är helt skattefria?
+        <span class="arrow">→</span>
+      </a>
+      <a href="/kommunalskatt-2026.html" class="related-link">
+        Topplista: Kommunerna med lägst skatt i Sverige 2026
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  lonefterskatt.com · Beräkningar baseras på Skatteverkets officiella uppgifter för 2026.<br>
+  Informationen är vägledande och ska inte ses som skatterådgivning. <a href="/">Tillbaka till kalkylatorn</a>
+</footer>
+
+</body>
+</html>

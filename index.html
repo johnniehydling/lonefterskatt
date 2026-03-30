@@ -103,11 +103,11 @@ header p {
 }
 .grid {
   display: grid;
-  grid-template-columns: 370px 1fr;
+  grid-template-columns: 1fr;
   gap: 18px;
-  align-items: start;
+  max-width: 680px;
+  margin: 0 auto;
 }
-@media (max-width: 780px) { .grid { grid-template-columns: 1fr; } }
 
 /* ─── CARDS ──────────────────────────────────────── */
 .card {
@@ -167,31 +167,19 @@ input::placeholder { color: var(--ink3); }
 }
 select option { background: #1E2023; }
 
-/* Period toggle */
-.period-toggle {
-  display: flex;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 3px; gap: 3px;
-  margin-bottom: 18px;
+/* ─── PIE LEGEND ─────────────────────────────────── */
+.pie-legend-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 8px; font-size: 12px;
 }
-.period-btn {
-  flex: 1; padding: 9px;
-  border: none; border-radius: 6px;
-  background: transparent;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem; font-weight: 500;
-  color: var(--ink3); cursor: pointer;
-  transition: all 0.15s;
+.pie-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
 }
-.period-btn.active {
-  background: var(--surface3);
-  color: var(--ink);
-  border: 1px solid var(--border2);
+.pie-lbl { flex: 1; color: var(--ink2); }
+.pie-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--ink); font-weight: 500;
 }
-
-/* Divider */
 .divider { height: 1px; background: var(--border); margin: 18px 0; }
 
 /* Kyrka toggle row */
@@ -282,17 +270,22 @@ select option { background: #1E2023; }
 .hero-sub { font-size: 12px; color: var(--ink3); margin-top: 8px; font-weight: 300; }
 .hero-stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
   margin-top: 22px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
 }
 .hstat { padding: 10px 0; }
-.hstat:nth-child(odd) { padding-right: 16px; border-right: 1px solid var(--border); }
-.hstat:nth-child(even) { padding-left: 16px; }
-.hstat:nth-child(1), .hstat:nth-child(2) { border-bottom: 1px solid var(--border); padding-bottom: 14px; }
-.hstat:nth-child(3), .hstat:nth-child(4) { padding-top: 14px; }
+.hstat:not(:last-child) { padding-right: 16px; border-right: 1px solid var(--border); }
+.hstat:not(:first-child) { padding-left: 16px; }
+@media (max-width: 500px) {
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hstat:nth-child(odd) { padding-right: 16px; border-right: 1px solid var(--border); padding-left: 0; }
+  .hstat:nth-child(even) { padding-left: 16px; border-right: none; }
+  .hstat:nth-child(1), .hstat:nth-child(2) { border-bottom: 1px solid var(--border); padding-bottom: 14px; }
+  .hstat:nth-child(3), .hstat:nth-child(4) { padding-top: 14px; }
+}
 .hstat-label {
   font-size: 10px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
@@ -310,10 +303,11 @@ select option { background: #1E2023; }
 /* ─── BREAKDOWN ──────────────────────────────────── */
 .bd-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   margin-bottom: 20px;
 }
+@media (max-width: 500px) { .bd-grid { grid-template-columns: 1fr 1fr; } }
 .bd-item {
   background: var(--surface2);
   border: 1px solid var(--border);
@@ -383,9 +377,14 @@ select option { background: #1E2023; }
 /* ─── INFO CARDS ─────────────────────────────────── */
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px; margin-top: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 28px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
 }
+@media (max-width: 600px) { .info-grid { grid-template-columns: 1fr 1fr; } }
 .info-c {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 20px 22px;
@@ -412,7 +411,7 @@ footer {
 <header>
   <div class="eyebrow">Uppdaterad för 2026</div>
   <h1>Lönekalkylator<br><em>efter skatt</em></h1>
-  <p>Beräkna din nettolön med kommunalskatt, kyrkoavgift, jobbskatteavdrag och grundavdrag – korrekt för 2026.</p>
+  <p>Beräkna din lön efter skatt – korrekt för 2026 inklusive jobbskatteavdrag och grundavdrag.</p>
 </header>
 
 <div class="container">
@@ -423,20 +422,12 @@ footer {
     <div class="card-label">Din information</div>
 
     <div class="field">
-      <label>Beräkna per</label>
-      <div class="period-toggle">
-        <button class="period-btn active" onclick="setPeriod('month',this)">Månad</button>
-        <button class="period-btn" onclick="setPeriod('year',this)">År</button>
-      </div>
-    </div>
-
-    <div class="field">
-      <label id="sal-lbl">Bruttolön (kr/månad)</label>
+      <label>Lön innan skatt (kr/månad)</label>
       <input type="number" id="salary" value="40000" min="0" oninput="calc()">
     </div>
 
     <div class="field">
-      <label>Åldersgrupp</label>
+      <label>Ålder</label>
       <div class="select-wrap">
         <select id="age" onchange="calc()">
           <option value="normal">Under 66 år</option>
@@ -449,27 +440,293 @@ footer {
       <label>Kommun</label>
       <div class="select-wrap">
         <select id="kommun" onchange="calc()">
-          <option value="30.33">Stockholm (30,33%)</option>
-          <option value="32.41">Göteborg (32,41%)</option>
-          <option value="32.44">Malmö (32,44%)</option>
-          <option value="32.02">Uppsala (32,02%)</option>
-          <option value="31.47">Linköping (31,47%)</option>
-          <option value="32.43">Örebro (32,43%)</option>
-          <option value="31.09">Västerås (31,09%)</option>
-          <option value="31.53">Helsingborg (31,53%)</option>
-          <option value="31.84">Lund (31,84%)</option>
+          <option value="32.38">— Rikssnitt (32,38%) —</option>
+          <option value="32.80">Ale (32,80%)</option>
+          <option value="32.84">Alingsås (32,84%)</option>
+          <option value="33.42">Alvesta (33,42%)</option>
+          <option value="33.85">Aneby (33,85%)</option>
+          <option value="33.29">Arboga (33,29%)</option>
+          <option value="34.84">Arjeplog (34,84%)</option>
+          <option value="34.14">Arvidsjaur (34,14%)</option>
+          <option value="34.03">Arvika (34,03%)</option>
+          <option value="34.15">Askersund (34,15%)</option>
+          <option value="33.95">Avesta (33,95%)</option>
+          <option value="34.40">Bengtsfors (34,40%)</option>
+          <option value="34.22">Berg (34,22%)</option>
+          <option value="35.00">Bjurholm (35,00%)</option>
+          <option value="32.17">Bjuv (32,17%)</option>
+          <option value="33.94">Boden (33,94%)</option>
+          <option value="33.07">Bollebygd (33,07%)</option>
+          <option value="33.37">Bollnäs (33,37%)</option>
+          <option value="33.44">Borgholm (33,44%)</option>
+          <option value="34.40">Borlänge (34,40%)</option>
+          <option value="32.79">Borås (32,79%)</option>
+          <option value="32.23">Botkyrka (32,23%)</option>
+          <option value="33.37">Boxholm (33,37%)</option>
+          <option value="33.74">Bromölla (33,74%)</option>
+          <option value="35.09">Bräcke (35,09%)</option>
+          <option value="31.27">Burlöv (31,27%)</option>
+          <option value="31.41">Båstad (31,41%)</option>
+          <option value="34.69">Dals-Ed (34,69%)</option>
+          <option value="30.58">Danderyd (30,58%)</option>
+          <option value="35.30">Degerfors (35,30%)</option>
+          <option value="35.65">Dorotea (35,65%)</option>
+          <option value="34.55">Eda (34,55%)</option>
+          <option value="31.45">Ekerö (31,45%)</option>
+          <option value="34.02">Eksjö (34,02%)</option>
+          <option value="33.82">Emmaboda (33,82%)</option>
+          <option value="33.05">Enköping (33,05%)</option>
+          <option value="32.85">Eskilstuna (32,85%)</option>
+          <option value="31.72">Eslöv (31,72%)</option>
+          <option value="33.05">Essunga (33,05%)</option>
+          <option value="32.99">Fagersta (32,99%)</option>
+          <option value="32.50">Falkenberg (32,50%)</option>
+          <option value="33.43">Falköping (33,43%)</option>
+          <option value="34.05">Falun (34,05%)</option>
+          <option value="34.55">Filipstad (34,55%)</option>
+          <option value="33.70">Finspång (33,70%)</option>
+          <option value="33.10">Flen (33,10%)</option>
+          <option value="34.63">Forshaga (34,63%)</option>
+          <option value="34.39">Färgelanda (34,39%)</option>
+          <option value="34.27">Gagnef (34,27%)</option>
+          <option value="33.75">Gislaved (33,75%)</option>
+          <option value="32.95">Gnesta (32,95%)</option>
+          <option value="34.00">Gnosjö (34,00%)</option>
+          <option value="33.60">Gotland (33,60%)</option>
+          <option value="34.78">Grums (34,78%)</option>
+          <option value="33.47">Grästorp (33,47%)</option>
+          <option value="33.97">Gullspång (33,97%)</option>
+          <option value="33.89">Gällivare (33,89%)</option>
+          <option value="33.77">Gävle (33,77%)</option>
+          <option value="32.60">Göteborg (32,60%)</option>
+          <option value="33.60">Götene (33,60%)</option>
+          <option value="33.93">Habo (33,93%)</option>
+          <option value="34.30">Hagfors (34,30%)</option>
+          <option value="33.85">Hallsberg (33,85%)</option>
+          <option value="32.69">Hallstahammar (32,69%)</option>
+          <option value="32.38">Halmstad (32,38%)</option>
+          <option value="35.05">Hammarö (35,05%)</option>
+          <option value="31.28">Haninge (31,28%)</option>
+          <option value="33.84">Haparanda (33,84%)</option>
+          <option value="34.21">Heby (34,21%)</option>
+          <option value="34.15">Hedemora (34,15%)</option>
+          <option value="31.39">Helsingborg (31,39%)</option>
+          <option value="33.62">Herrljunga (33,62%)</option>
+          <option value="33.48">Hjo (33,48%)</option>
+          <option value="34.37">Hofors (34,37%)</option>
+          <option value="31.71">Huddinge (31,71%)</option>
+          <option value="33.12">Hudiksvall (33,12%)</option>
+          <option value="33.77">Hultsfred (33,77%)</option>
+          <option value="33.85">Hylte (33,85%)</option>
+          <option value="33.30">Håbo (33,30%)</option>
+          <option value="34.35">Hällefors (34,35%)</option>
+          <option value="34.17">Härjedalen (34,17%)</option>
+          <option value="34.63">Härnösand (34,63%)</option>
+          <option value="31.98">Härryda (31,98%)</option>
+          <option value="32.38">Hässleholm (32,38%)</option>
+          <option value="30.91">Höganäs (30,91%)</option>
+          <option value="34.07">Högsby (34,07%)</option>
+          <option value="32.26">Hörby (32,26%)</option>
+          <option value="32.63">Höör (32,63%)</option>
+          <option value="34.29">Jokkmokk (34,29%)</option>
+          <option value="31.52">Järfälla (31,52%)</option>
+          <option value="33.40">Jönköping (33,40%)</option>
+          <option value="33.89">Kalix (33,89%)</option>
+          <option value="33.67">Kalmar (33,67%)</option>
+          <option value="32.80">Karlsborg (32,80%)</option>
+          <option value="33.80">Karlshamn (33,80%)</option>
+          <option value="34.30">Karlskoga (34,30%)</option>
+          <option value="33.69">Karlskrona (33,69%)</option>
+          <option value="33.55">Karlstad (33,55%)</option>
+          <option value="32.95">Katrineholm (32,95%)</option>
+          <option value="34.63">Kil (34,63%)</option>
+          <option value="33.00">Kinda (33,00%)</option>
+          <option value="34.39">Kiruna (34,39%)</option>
+          <option value="31.93">Klippan (31,93%)</option>
+          <option value="32.62">Knivsta (32,62%)</option>
+          <option value="34.43">Kramfors (34,43%)</option>
+          <option value="32.64">Kristianstad (32,64%)</option>
+          <option value="34.25">Kristinehamn (34,25%)</option>
+          <option value="33.87">Krokom (33,87%)</option>
+          <option value="33.84">Kumla (33,84%)</option>
+          <option value="32.58">Kungsbacka (32,58%)</option>
+          <option value="32.91">Kungsör (32,91%)</option>
+          <option value="32.92">Kungälv (32,92%)</option>
+          <option value="29.59">Kävlinge (29,59%)</option>
+          <option value="33.04">Köping (33,04%)</option>
+          <option value="32.80">Laholm (32,80%)</option>
+          <option value="31.42">Landskrona (31,42%)</option>
+          <option value="35.00">Laxå (35,00%)</option>
+          <option value="33.73">Lekeberg (33,73%)</option>
+          <option value="33.80">Leksand (33,80%)</option>
+          <option value="32.03">Lerum (32,03%)</option>
+          <option value="33.81">Lessebo (33,81%)</option>
+          <option value="29.67">Lidingö (29,67%)</option>
+          <option value="32.74">Lidköping (32,74%)</option>
+          <option value="33.85">Lilla Edet (33,85%)</option>
+          <option value="34.60">Lindesberg (34,60%)</option>
+          <option value="31.75">Linköping (31,75%)</option>
+          <option value="33.07">Ljungby (33,07%)</option>
+          <option value="33.87">Ljusdal (33,87%)</option>
+          <option value="33.80">Ljusnarsberg (33,80%)</option>
+          <option value="30.72">Lomma (30,72%)</option>
+          <option value="34.05">Ludvika (34,05%)</option>
+          <option value="33.84">Luleå (33,84%)</option>
+          <option value="32.42">Lund (32,42%)</option>
+          <option value="34.90">Lycksele (34,90%)</option>
+          <option value="33.94">Lysekil (33,94%)</option>
+          <option value="32.42">Malmö (32,42%)</option>
+          <option value="34.45">Malung-Sälen (34,45%)</option>
+          <option value="35.20">Malå (35,20%)</option>
+          <option value="32.74">Mariestad (32,74%)</option>
+          <option value="32.99">Mark (32,99%)</option>
+          <option value="33.31">Markaryd (33,31%)</option>
+          <option value="34.08">Mellerud (34,08%)</option>
+          <option value="33.45">Mjölby (33,45%)</option>
+          <option value="34.32">Mora (34,32%)</option>
+          <option value="33.25">Motala (33,25%)</option>
+          <option value="34.10">Mullsjö (34,10%)</option>
+          <option value="34.86">Munkedal (34,86%)</option>
+          <option value="34.30">Munkfors (34,30%)</option>
+          <option value="31.99">Mölndal (31,99%)</option>
+          <option value="34.07">Mönsterås (34,07%)</option>
+          <option value="34.07">Mörbylånga (34,07%)</option>
+          <option value="30.11">Nacka (30,11%)</option>
+          <option value="34.55">Nora (34,55%)</option>
+          <option value="33.54">Norberg (33,54%)</option>
+          <option value="34.02">Nordanstig (34,02%)</option>
+          <option value="35.10">Nordmaling (35,10%)</option>
+          <option value="33.30">Norrköping (33,30%)</option>
+          <option value="32.05">Norrtälje (32,05%)</option>
+          <option value="35.20">Norsjö (35,20%)</option>
+          <option value="34.19">Nybro (34,19%)</option>
+          <option value="32.30">Nykvarn (32,30%)</option>
+          <option value="32.25">Nyköping (32,25%)</option>
+          <option value="32.18">Nynäshamn (32,18%)</option>
+          <option value="34.30">Nässjö (34,30%)</option>
+          <option value="34.27">Ockelbo (34,27%)</option>
+          <option value="33.75">Olofström (33,75%)</option>
+          <option value="34.30">Orsa (34,30%)</option>
+          <option value="33.69">Orust (33,69%)</option>
+          <option value="33.99">Osby (33,99%)</option>
+          <option value="34.21">Oskarshamn (34,21%)</option>
+          <option value="33.37">Ovanåker (33,37%)</option>
+          <option value="33.05">Oxelösund (33,05%)</option>
+          <option value="34.74">Pajala (34,74%)</option>
+          <option value="31.36">Partille (31,36%)</option>
+          <option value="31.99">Perstorp (31,99%)</option>
+          <option value="33.59">Piteå (33,59%)</option>
+          <option value="34.92">Ragunda (34,92%)</option>
+          <option value="35.00">Robertsfors (35,00%)</option>
+          <option value="33.68">Ronneby (33,68%)</option>
+          <option value="33.80">Rättvik (33,80%)</option>
+          <option value="33.19">Sala (33,19%)</option>
+          <option value="32.00">Salem (32,00%)</option>
+          <option value="33.12">Sandviken (33,12%)</option>
+          <option value="31.83">Sigtuna (31,83%)</option>
+          <option value="31.69">Simrishamn (31,69%)</option>
+          <option value="32.10">Sjöbo (32,10%)</option>
+          <option value="33.38">Skara (33,38%)</option>
+          <option value="34.45">Skellefteå (34,45%)</option>
+          <option value="33.34">Skinnskatteberg (33,34%)</option>
+          <option value="31.60">Skurup (31,60%)</option>
+          <option value="33.09">Skövde (33,09%)</option>
+          <option value="34.44">Smedjebacken (34,44%)</option>
+          <option value="34.68">Sollefteå (34,68%)</option>
+          <option value="30.45">Sollentuna (30,45%)</option>
+          <option value="29.70">Solna (29,70%)</option>
+          <option value="35.45">Sorsele (35,45%)</option>
+          <option value="33.47">Sotenäs (33,47%)</option>
+          <option value="30.12">Staffanstorp (30,12%)</option>
+          <option value="33.12">Stenungsund (33,12%)</option>
+          <option value="30.55" selected>Stockholm (30,55%)</option>
+          <option value="34.98">Storfors (34,98%)</option>
+          <option value="34.95">Storuman (34,95%)</option>
+          <option value="32.50">Strängnäs (32,50%)</option>
+          <option value="33.39">Strömstad (33,39%)</option>
+          <option value="34.92">Strömsund (34,92%)</option>
+          <option value="31.58">Sundbyberg (31,58%)</option>
+          <option value="33.88">Sundsvall (33,88%)</option>
+          <option value="33.75">Sunne (33,75%)</option>
+          <option value="33.19">Surahammar (33,19%)</option>
+          <option value="31.92">Svalöv (31,92%)</option>
+          <option value="31.42">Svedala (31.42%)</option>
+          <option value="33.53">Svenljunga (33,53%)</option>
+          <option value="33.80">Säffle (33,80%)</option>
+          <option value="34.30">Säter (34,30%)</option>
+          <option value="33.68">Sävsjö (33,68%)</option>
+          <option value="33.17">Söderhamn (33,17%)</option>
+          <option value="33.53">Söderköping (33,53%)</option>
+          <option value="32.75">Södertälje (32,75%)</option>
+          <option value="33.35">Sölvesborg (33,35%)</option>
+          <option value="33.92">Tibro (33,92%)</option>
+          <option value="33.48">Tidaholm (33,48%)</option>
+          <option value="33.62">Tierp (33,62%)</option>
+          <option value="32.49">Timrå (32,49%)</option>
+          <option value="32.16">Tingsryd (32,16%)</option>
+          <option value="33.38">Tjörn (33,38%)</option>
+          <option value="32.48">Tomelilla (32,48%)</option>
+          <option value="33.97">Torsby (33,97%)</option>
+          <option value="33.68">Torsås (33,68%)</option>
+          <option value="32.37">Tranås (32,37%)</option>
+          <option value="32.12">Trelleborg (32,12%)</option>
+          <option value="32.37">Trollhättan (32,37%)</option>
+          <option value="32.37">Trosa (32,37%)</option>
+          <option value="32.31">Tyresö (32,31%)</option>
+          <option value="31.90">Täby (31,90%)</option>
+          <option value="33.88">Töreboda (33,88%)</option>
+          <option value="34.65">Uddevalla (34,65%)</option>
+          <option value="33.81">Ulricehamn (33,81%)</option>
           <option value="34.75">Umeå (34,75%)</option>
-          <option value="31.23">Borås (31,23%)</option>
-          <option value="32.37">Norrköping (32,37%)</option>
-          <option value="31.45">Jönköping (31,45%)</option>
-          <option value="32.00">Sundsvall (32,00%)</option>
-          <option value="31.58">Gävle (31,58%)</option>
-          <option value="34.55">Östersund (34,55%)</option>
-          <option value="29.41">Solna (29,41%)</option>
-          <option value="29.19">Vellinge (29,19%)</option>
-          <option value="29.45">Österåker (29,45%)</option>
-          <option value="35.15">Dorotea (35,15%)</option>
-          <option value="32.38">Rikssnitt (32,38%)</option>
+          <option value="33.18">Uppsala (33,18%)</option>
+          <option value="32.15">Upplands-Bro (32,15%)</option>
+          <option value="31.88">Upplands Väsby (31,88%)</option>
+          <option value="32.30">Uppvidinge (32,30%)</option>
+          <option value="31.68">Vadstena (31,68%)</option>
+          <option value="32.19">Vaggeryd (32,19%)</option>
+          <option value="32.41">Valdemarsvik (32,41%)</option>
+          <option value="31.90">Vallentuna (31,90%)</option>
+          <option value="33.16">Vansbro (33,16%)</option>
+          <option value="33.41">Vara (33,41%)</option>
+          <option value="32.50">Varberg (32,50%)</option>
+          <option value="31.75">Vaxholm (31,75%)</option>
+          <option value="32.27">Vellinge (32,27%)</option>
+          <option value="33.92">Vetlanda (33,92%)</option>
+          <option value="34.19">Vilhelmina (34,19%)</option>
+          <option value="35.20">Vindeln (35,20%)</option>
+          <option value="32.49">Vingåker (32,49%)</option>
+          <option value="32.37">Vårgårda (32,37%)</option>
+          <option value="33.42">Vänersborg (33,42%)</option>
+          <option value="35.20">Vännäs (35,20%)</option>
+          <option value="32.42">Värnamo (32,42%)</option>
+          <option value="33.32">Västervik (33,32%)</option>
+          <option value="31.65">Västerås (31,65%)</option>
+          <option value="32.67">Växjö (32,67%)</option>
+          <option value="32.37">Värmdö (32,37%)</option>
+          <option value="32.49">Ydre (32,49%)</option>
+          <option value="31.64">Ystad (31,64%)</option>
+          <option value="33.88">Åmål (33,88%)</option>
+          <option value="34.30">Ånge (34,30%)</option>
+          <option value="33.45">Åre (33,45%)</option>
+          <option value="32.15">Åstorp (32,15%)</option>
+          <option value="34.67">Åsele (34,67%)</option>
+          <option value="33.54">Åtvidaberg (33,54%)</option>
+          <option value="32.37">Älmhult (32,37%)</option>
+          <option value="34.82">Älvdalen (34,82%)</option>
+          <option value="33.67">Älvkarleby (33,67%)</option>
+          <option value="33.52">Älvsbyn (33,52%)</option>
+          <option value="32.15">Ängelholm (32,15%)</option>
+          <option value="33.08">Öckerö (33,08%)</option>
+          <option value="33.77">Ödeshög (33,77%)</option>
+          <option value="34.55">Örkelljunga (34,55%)</option>
+          <option value="33.65">Örnsköldsvik (33,65%)</option>
+          <option value="34.60">Östersund (34,60%)</option>
+          <option value="28.93">Österåker (28,93%)</option>
+          <option value="33.62">Östhammar (33,62%)</option>
+          <option value="33.40">Östra Göinge (33,40%)</option>
+          <option value="34.08">Överkalix (34,08%)</option>
+          <option value="34.47">Övertorneå (34,47%)</option>
+          <option value="34.45">Örebro (34,45%)</option>
         </select>
       </div>
     </div>
@@ -481,8 +738,8 @@ footer {
       <div class="kyrka-left">
         <div class="kyrka-ico">⛪</div>
         <div>
-          <div class="kyrka-lbl">Kyrkoavgift</div>
-          <div class="kyrka-sub">Medlem i Svenska kyrkan</div>
+          <div class="kyrka-lbl">Medlem i Svenska kyrkan</div>
+              <div class="kyrka-sub">Aktivera för att inkludera kyrkoavgift</div>
         </div>
       </div>
       <div class="sw" id="sw"></div>
@@ -493,54 +750,335 @@ footer {
         <label>Välj församling</label>
         <div class="select-wrap">
           <select id="forsamling" onchange="calc()">
-            <optgroup label="Stockholm">
-              <option value="0.76">Adolf Fredriks församling (0,76%)</option>
-              <option value="0.665">Lidingö församling – lägst (0,665%)</option>
-              <option value="0.665">S:t Matteus församling – lägst (0,665%)</option>
-              <option value="0.80">Oscars församling (0,80%)</option>
-              <option value="0.73">Katarina församling (0,73%)</option>
-              <option value="0.88">Spånga-Kista församling (0,88%)</option>
-              <option value="0.90">Brännkyrka församling (0,90%)</option>
+            <option value="1.05" selected>— Rikssnitt 2026 (1,05%) —</option>
+            <optgroup label="Stockholms stift">
+              <option value="0.665">Adolf Fredriks församling, Stockholm (0,665%)</option>
+              <option value="0.665">S:t Matteus församling, Stockholm (0,665%)</option>
+              <option value="0.73">Katarina församling, Stockholm (0,73%)</option>
+              <option value="0.76">Hedvig Eleonora församling, Stockholm (0,76%)</option>
+              <option value="0.76">Johannes församling, Stockholm (0,76%)</option>
+              <option value="0.78">Engelbrekts församling, Stockholm (0,78%)</option>
+              <option value="0.80">Oscars församling, Stockholm (0,80%)</option>
+              <option value="0.80">Sofia församling, Stockholm (0,80%)</option>
+              <option value="0.83">Gustav Vasa församling, Stockholm (0,83%)</option>
+              <option value="0.85">Maria Magdalena församling, Stockholm (0,85%)</option>
+              <option value="0.85">Kungsholms församling, Stockholm (0,85%)</option>
+              <option value="0.88">Spånga-Kista församling, Stockholm (0,88%)</option>
+              <option value="0.90">Brännkyrka församling, Stockholm (0,90%)</option>
+              <option value="0.90">Enskede-Årsta-Vantör, Stockholm (0,90%)</option>
+              <option value="0.92">Farsta församling, Stockholm (0,92%)</option>
+              <option value="0.93">Skarpnäcks församling, Stockholm (0,93%)</option>
+              <option value="0.95">Bromma församling, Stockholm (0,95%)</option>
+              <option value="0.70">Botkyrka pastorat (0,70%)</option>
+              <option value="0.88">Danderyd pastorat (0,88%)</option>
+              <option value="0.82">Ekerö pastorat (0,82%)</option>
+              <option value="0.95">Haninge pastorat (0,95%)</option>
+              <option value="0.93">Huddinge pastorat (0,93%)</option>
+              <option value="0.90">Järfälla pastorat (0,90%)</option>
+              <option value="0.665">Lidingö församling (0,665%)</option>
+              <option value="0.90">Nacka pastorat (0,90%)</option>
+              <option value="1.05">Norrtälje pastorat (1,05%)</option>
+              <option value="0.85">Nykvarn pastorat (0,85%)</option>
+              <option value="1.00">Nynäshamn pastorat (1,00%)</option>
+              <option value="0.88">Salem pastorat (0,88%)</option>
+              <option value="0.92">Sigtuna pastorat (0,92%)</option>
+              <option value="0.83">Sollentuna pastorat (0,83%)</option>
+              <option value="0.75">Solna pastorat (0,75%)</option>
+              <option value="0.88">Sundbyberg pastorat (0,88%)</option>
+              <option value="0.95">Södertälje pastorat (0,95%)</option>
+              <option value="0.90">Tyresö pastorat (0,90%)</option>
+              <option value="0.85">Täby pastorat (0,85%)</option>
+              <option value="0.90">Upplands-Bro pastorat (0,90%)</option>
+              <option value="0.88">Upplands Väsby pastorat (0,88%)</option>
+              <option value="0.88">Vallentuna pastorat (0,88%)</option>
+              <option value="0.85">Vaxholm pastorat (0,85%)</option>
+              <option value="0.90">Värmdö pastorat (0,90%)</option>
+              <option value="0.71">Österåkers pastorat (0,71%)</option>
             </optgroup>
-            <optgroup label="Göteborg">
-              <option value="0.95">Göteborgs domkyrkoförsamling (0,95%)</option>
-              <option value="1.05">Örgryte församling (1,05%)</option>
-              <option value="1.10">Tuve-Säve församling (1,10%)</option>
-              <option value="1.15">Bergsjön-Kortedala (1,15%)</option>
-            </optgroup>
-            <optgroup label="Malmö">
-              <option value="0.92">Husie församling (0,92%)</option>
-              <option value="1.00">Limhamns församling (1,00%)</option>
-              <option value="1.10">S:t Pauli församling (1,10%)</option>
-            </optgroup>
-            <optgroup label="Uppsala">
+            <optgroup label="Uppsala stift">
               <option value="1.05">Uppsala domkyrkoförsamling (1,05%)</option>
-              <option value="1.10">Alsike församling (1,10%)</option>
+              <option value="1.08">Uppsala-Näs pastorat (1,08%)</option>
+              <option value="1.10">Alsike-Knivsta pastorat (1,10%)</option>
+              <option value="1.05">Enköpings pastorat (1,05%)</option>
+              <option value="1.10">Heby pastorat (1,10%)</option>
+              <option value="0.95">Håbo pastorat (0,95%)</option>
+              <option value="1.10">Tierp pastorat (1,10%)</option>
+              <option value="1.15">Älvkarleby pastorat (1,15%)</option>
+              <option value="1.10">Östhammars pastorat (1,10%)</option>
+              <option value="1.10">Gävle pastorat (1,10%)</option>
+              <option value="1.15">Bollnäs pastorat (1,15%)</option>
+              <option value="1.20">Hudiksvalls pastorat (1,20%)</option>
+              <option value="1.25">Ljusdals pastorat (1,25%)</option>
+              <option value="1.20">Nordanstigs pastorat (1,20%)</option>
+              <option value="1.15">Ockelbo pastorat (1,15%)</option>
+              <option value="1.10">Sandvikens pastorat (1,10%)</option>
+              <option value="1.15">Söderhamns pastorat (1,15%)</option>
             </optgroup>
-            <optgroup label="Linköping">
-              <option value="0.93">Linköpings domkyrkoförsamling (0,93%)</option>
-              <option value="1.00">Kärna-Landeryds församling (1,00%)</option>
+            <optgroup label="Västerås stift">
+              <option value="0.95">Västerås domkyrkoförsamling (0,95%)</option>
+              <option value="1.00">Västerås pastorat (1,00%)</option>
+              <option value="1.05">Avesta pastorat (1,05%)</option>
+              <option value="1.10">Borlänge pastorat (1,10%)</option>
+              <option value="1.05">Falu pastorat (1,05%)</option>
+              <option value="1.10">Hedemora pastorat (1,10%)</option>
+              <option value="1.05">Leksands pastorat (1,05%)</option>
+              <option value="1.15">Ludvika pastorat (1,15%)</option>
+              <option value="1.20">Malung-Sälens pastorat (1,20%)</option>
+              <option value="1.10">Mora pastorat (1,10%)</option>
+              <option value="1.15">Orsa pastorat (1,15%)</option>
+              <option value="1.10">Rättviks pastorat (1,10%)</option>
+              <option value="1.15">Smedjebackens pastorat (1,15%)</option>
+              <option value="1.10">Säters pastorat (1,10%)</option>
+              <option value="1.20">Vansbro pastorat (1,20%)</option>
+              <option value="1.25">Älvdalens pastorat (1,25%)</option>
+              <option value="1.05">Enköping-Västerås (1,05%)</option>
+              <option value="1.00">Köpings pastorat (1,00%)</option>
+              <option value="1.05">Sala pastorat (1,05%)</option>
+              <option value="1.00">Skinnskattebergs pastorat (1,00%)</option>
+              <option value="1.05">Surahammars pastorat (1,05%)</option>
             </optgroup>
-            <optgroup label="Övriga">
+            <optgroup label="Strängnäs stift">
+              <option value="1.00">Eskilstuna domkyrkoförsamling (1,00%)</option>
+              <option value="1.05">Eskilstuna pastorat (1,05%)</option>
+              <option value="1.10">Flens pastorat (1,10%)</option>
+              <option value="1.05">Gnesta pastorat (1,05%)</option>
+              <option value="1.05">Katrineholms pastorat (1,05%)</option>
+              <option value="1.00">Nyköpings pastorat (1,00%)</option>
+              <option value="1.05">Oxelösunds pastorat (1,05%)</option>
+              <option value="1.00">Strängnäs pastorat (1,00%)</option>
+              <option value="1.00">Trosa pastorat (1,00%)</option>
+              <option value="1.05">Vingåkers pastorat (1,05%)</option>
               <option value="0.91">Örebro pastorat (0,91%)</option>
-              <option value="1.08">Umeå stadsförsamling (1,08%)</option>
-              <option value="1.03">Gävle pastorat (1,03%)</option>
-              <option value="1.20">Sundsvalls pastorat (1,20%)</option>
-              <option value="1.05">Jönköpings pastorat (1,05%)</option>
-              <option value="1.15">Östersunds pastorat (1,15%)</option>
-              <option value="1.00">Helsingborgs pastorat (1,00%)</option>
-              <option value="1.10">Lunds pastorat (1,10%)</option>
+              <option value="1.05">Askersunds pastorat (1,05%)</option>
+              <option value="1.10">Degerfors pastorat (1,10%)</option>
+              <option value="1.10">Hallsbergs pastorat (1,10%)</option>
+              <option value="1.15">Hällefors pastorat (1,15%)</option>
+              <option value="1.05">Karlskoga pastorat (1,05%)</option>
+              <option value="1.00">Kumla pastorat (1,00%)</option>
+              <option value="1.10">Laxå pastorat (1,10%)</option>
+              <option value="1.05">Lindesbergs pastorat (1,05%)</option>
+              <option value="1.10">Ljusnarsberg pastorat (1,10%)</option>
+              <option value="1.05">Nora pastorat (1,05%)</option>
             </optgroup>
-            <optgroup label="Rikssnitt &amp; extremer">
-              <option value="1.05" selected>Rikssnitt 2026 (1,05%)</option>
-              <option value="1.85">Hedebygdens församling – högst (1,85%)</option>
+            <optgroup label="Linköpings stift">
+              <option value="0.93">Linköpings domkyrkoförsamling (0,93%)</option>
+              <option value="1.00">Kärna-Landeryds pastorat (1,00%)</option>
+              <option value="1.00">Linköpings pastorat (1,00%)</option>
+              <option value="1.05">Boxholms pastorat (1,05%)</option>
+              <option value="1.05">Finspångs pastorat (1,05%)</option>
+              <option value="1.10">Kinda pastorat (1,10%)</option>
+              <option value="1.05">Mjölby pastorat (1,05%)</option>
+              <option value="1.05">Motala pastorat (1,05%)</option>
+              <option value="1.00">Norrköpings pastorat (1,00%)</option>
+              <option value="1.05">Söderköpings pastorat (1,05%)</option>
+              <option value="1.05">Vadstena pastorat (1,05%)</option>
+              <option value="1.10">Valdemarsviks pastorat (1,10%)</option>
+              <option value="1.15">Ydre pastorat (1,15%)</option>
+              <option value="1.05">Åtvidabergs pastorat (1,05%)</option>
+              <option value="1.10">Ödeshögs pastorat (1,10%)</option>
+              <option value="1.05">Jönköpings pastorat (1,05%)</option>
+              <option value="1.05">Aneby pastorat (1,05%)</option>
+              <option value="1.05">Eksjö pastorat (1,05%)</option>
+              <option value="1.10">Gislaveds pastorat (1,10%)</option>
+              <option value="1.10">Gnosjö pastorat (1,10%)</option>
+              <option value="1.00">Habo pastorat (1,00%)</option>
+              <option value="1.05">Mullsjö pastorat (1,05%)</option>
+              <option value="1.05">Nässjö pastorat (1,05%)</option>
+              <option value="1.10">Sävsjö pastorat (1,10%)</option>
+              <option value="1.05">Tranås pastorat (1,05%)</option>
+              <option value="1.05">Vaggeryds pastorat (1,05%)</option>
+              <option value="1.05">Vetlanda pastorat (1,05%)</option>
+              <option value="1.05">Värnamo pastorat (1,05%)</option>
+            </optgroup>
+            <optgroup label="Skara stift">
+              <option value="1.265">Skara pastorat (1,265%)</option>
+              <option value="1.10">Borås pastorat (1,10%)</option>
+              <option value="1.15">Falköpings pastorat (1,15%)</option>
+              <option value="1.10">Grästorps pastorat (1,10%)</option>
+              <option value="1.15">Götene pastorat (1,15%)</option>
+              <option value="1.10">Herrljunga pastorat (1,10%)</option>
+              <option value="1.20">Hjo pastorat (1,20%)</option>
+              <option value="1.10">Karlsborgs pastorat (1,10%)</option>
+              <option value="1.10">Lidköpings pastorat (1,10%)</option>
+              <option value="1.15">Mariestads pastorat (1,15%)</option>
+              <option value="1.10">Marks pastorat (1,10%)</option>
+              <option value="1.10">Skövde pastorat (1,10%)</option>
+              <option value="1.15">Tibro pastorat (1,15%)</option>
+              <option value="1.10">Tidaholms pastorat (1,10%)</option>
+              <option value="1.20">Töreboda pastorat (1,20%)</option>
+              <option value="1.10">Ulricehamns pastorat (1,10%)</option>
+              <option value="1.20">Vara pastorat (1,20%)</option>
+            </optgroup>
+            <optgroup label="Göteborgs stift">
+              <option value="0.95">Göteborgs domkyrkoförsamling (0,95%)</option>
+              <option value="1.00">Göteborgs pastorat (1,00%)</option>
+              <option value="1.05">Örgryte-Härlanda pastorat (1,05%)</option>
+              <option value="1.10">Angered pastorat (1,10%)</option>
+              <option value="1.05">Askim-Frölunda-Högsbo (1,05%)</option>
+              <option value="1.05">Lundby pastorat (1,05%)</option>
+              <option value="1.10">Tuve-Säve pastorat (1,10%)</option>
+              <option value="1.05">Älvsborg pastorat (1,05%)</option>
+              <option value="1.00">Ale pastorat (1,00%)</option>
+              <option value="1.05">Alingsås pastorat (1,05%)</option>
+              <option value="1.00">Härryda pastorat (1,00%)</option>
+              <option value="1.05">Kungsbacka pastorat (1,05%)</option>
+              <option value="0.95">Kungälvs pastorat (0,95%)</option>
+              <option value="1.00">Lerum pastorat (1,00%)</option>
+              <option value="1.15">Lilla Edets pastorat (1,15%)</option>
+              <option value="1.00">Mölndals pastorat (1,00%)</option>
+              <option value="1.05">Partille pastorat (1,05%)</option>
+              <option value="1.00">Stenungsunds pastorat (1,00%)</option>
+              <option value="1.00">Tjörns pastorat (1,00%)</option>
+              <option value="1.05">Trollhättans pastorat (1,05%)</option>
+              <option value="1.00">Västra Götaland Nord (1,00%)</option>
+              <option value="1.10">Åmåls pastorat (1,10%)</option>
+              <option value="1.05">Öckerö pastorat (1,05%)</option>
+            </optgroup>
+            <optgroup label="Karlstads stift">
+              <option value="1.05">Karlstads domkyrkoförsamling (1,05%)</option>
+              <option value="1.05">Karlstads pastorat (1,05%)</option>
+              <option value="1.10">Arvika pastorat (1,10%)</option>
+              <option value="1.15">Eda pastorat (1,15%)</option>
+              <option value="1.20">Filipstads pastorat (1,20%)</option>
+              <option value="1.10">Forshaga pastorat (1,10%)</option>
+              <option value="1.10">Grums pastorat (1,10%)</option>
+              <option value="1.20">Hagfors pastorat (1,20%)</option>
+              <option value="1.00">Hammarö pastorat (1,00%)</option>
+              <option value="1.05">Kils pastorat (1,05%)</option>
+              <option value="1.10">Kristinehamns pastorat (1,10%)</option>
+              <option value="1.25">Munkfors pastorat (1,25%)</option>
+              <option value="1.20">Storfors pastorat (1,20%)</option>
+              <option value="1.15">Sunne pastorat (1,15%)</option>
+              <option value="1.10">Säffle pastorat (1,10%)</option>
+              <option value="1.20">Torsby pastorat (1,20%)</option>
+              <option value="1.15">Årjängs pastorat (1,15%)</option>
+            </optgroup>
+            <optgroup label="Västerås stift – Västmanland">
+              <option value="1.00">Västerås pastorat (1,00%)</option>
+              <option value="1.05">Arboga pastorat (1,05%)</option>
+              <option value="1.00">Hallstahammars pastorat (1,00%)</option>
+              <option value="1.00">Köpings pastorat (1,00%)</option>
+              <option value="1.05">Norbergs pastorat (1,05%)</option>
+              <option value="1.00">Surahammar pastorat (1,00%)</option>
+              <option value="1.05">Västerås östra pastorat (1,05%)</option>
+            </optgroup>
+            <optgroup label="Lunds stift">
+              <option value="1.10">Lunds pastorat (1,10%)</option>
+              <option value="1.00">Helsingborgs pastorat (1,00%)</option>
+              <option value="0.92">Husie pastorat, Malmö (0,92%)</option>
+              <option value="1.00">Limhamns pastorat, Malmö (1,00%)</option>
+              <option value="1.05">Oxie pastorat, Malmö (1,05%)</option>
+              <option value="1.00">S:t Pauli pastorat, Malmö (1,00%)</option>
+              <option value="1.05">Staffanstorps pastorat (1,05%)</option>
+              <option value="1.00">Bjuvs pastorat (1,00%)</option>
+              <option value="1.05">Bromölla pastorat (1,05%)</option>
+              <option value="1.00">Burlövs pastorat (1,00%)</option>
+              <option value="1.05">Båstads pastorat (1,05%)</option>
+              <option value="1.05">Eslövs pastorat (1,05%)</option>
+              <option value="1.05">Hässleholms pastorat (1,05%)</option>
+              <option value="1.00">Höganäs pastorat (1,00%)</option>
+              <option value="1.05">Hörby pastorat (1,05%)</option>
+              <option value="1.05">Höör pastorat (1,05%)</option>
+              <option value="1.05">Klippans pastorat (1,05%)</option>
+              <option value="1.00">Kristianstads pastorat (1,00%)</option>
+              <option value="1.00">Kävlinge pastorat (1,00%)</option>
+              <option value="1.00">Landskrona pastorat (1,00%)</option>
+              <option value="1.00">Lomma pastorat (1,00%)</option>
+              <option value="1.05">Osby pastorat (1,05%)</option>
+              <option value="1.05">Perstorps pastorat (1,05%)</option>
+              <option value="1.05">Simrishamns pastorat (1,05%)</option>
+              <option value="1.05">Sjöbo pastorat (1,05%)</option>
+              <option value="1.00">Skurups pastorat (1,00%)</option>
+              <option value="1.00">Svalövs pastorat (1,00%)</option>
+              <option value="1.00">Svedala pastorat (1,00%)</option>
+              <option value="1.05">Tomelilla pastorat (1,05%)</option>
+              <option value="1.00">Trelleborgs pastorat (1,00%)</option>
+              <option value="0.95">Vellinge pastorat (0,95%)</option>
+              <option value="1.00">Ystads pastorat (1,00%)</option>
+              <option value="1.00">Åstorps pastorat (1,00%)</option>
+              <option value="1.05">Ängelholms pastorat (1,05%)</option>
+              <option value="1.05">Örkelljunga pastorat (1,05%)</option>
+              <option value="1.05">Östra Göinge pastorat (1,05%)</option>
+            </optgroup>
+            <optgroup label="Växjö stift">
+              <option value="1.05">Växjö pastorat (1,05%)</option>
+              <option value="1.05">Alvesta pastorat (1,05%)</option>
+              <option value="1.10">Lessebo pastorat (1,10%)</option>
+              <option value="1.05">Ljungby pastorat (1,05%)</option>
+              <option value="1.10">Markaryds pastorat (1,10%)</option>
+              <option value="1.10">Tingsryds pastorat (1,10%)</option>
+              <option value="1.10">Uppvidinge pastorat (1,10%)</option>
+              <option value="1.10">Älmhults pastorat (1,10%)</option>
+              <option value="1.00">Borgholms pastorat (1,00%)</option>
+              <option value="1.05">Emmaboda pastorat (1,05%)</option>
+              <option value="1.05">Hultsfreds pastorat (1,05%)</option>
+              <option value="1.05">Högsby pastorat (1,05%)</option>
+              <option value="1.00">Kalmar pastorat (1,00%)</option>
+              <option value="1.05">Mönsterås pastorat (1,05%)</option>
+              <option value="1.05">Mörbylånga pastorat (1,05%)</option>
+              <option value="1.05">Nybro pastorat (1,05%)</option>
+              <option value="1.05">Oskarshamns pastorat (1,05%)</option>
+              <option value="1.05">Torsås pastorat (1,05%)</option>
+              <option value="1.05">Vimmerby pastorat (1,05%)</option>
+              <option value="1.05">Västerviks pastorat (1,05%)</option>
+            </optgroup>
+            <optgroup label="Härnösands stift">
+              <option value="1.20">Sundsvalls pastorat (1,20%)</option>
+              <option value="1.85">Hedebygdens församling – högst i Sverige (1,85%)</option>
+              <option value="1.10">Härnösands pastorat (1,10%)</option>
+              <option value="1.20">Kramfors pastorat (1,20%)</option>
+              <option value="1.25">Sollefteå pastorat (1,25%)</option>
+              <option value="1.15">Timrå pastorat (1,15%)</option>
+              <option value="1.20">Ånge pastorat (1,20%)</option>
+              <option value="1.15">Örnsköldsviks pastorat (1,15%)</option>
+              <option value="1.15">Östersunds pastorat (1,15%)</option>
+              <option value="1.20">Bergs pastorat (1,20%)</option>
+              <option value="1.25">Bräcke pastorat (1,25%)</option>
+              <option value="1.20">Härjedalens pastorat (1,20%)</option>
+              <option value="1.15">Krokoms pastorat (1,15%)</option>
+              <option value="1.20">Ragunda pastorat (1,20%)</option>
+              <option value="1.20">Strömsunds pastorat (1,20%)</option>
+              <option value="1.10">Åre pastorat (1,10%)</option>
+            </optgroup>
+            <optgroup label="Luleå stift">
+              <option value="1.08">Umeå stadsförsamling (1,08%)</option>
+              <option value="1.10">Umeå pastorat (1,10%)</option>
+              <option value="1.15">Bjurholms pastorat (1,15%)</option>
+              <option value="1.40">Dorotea pastorat (1,40%)</option>
+              <option value="1.20">Lycksele pastorat (1,20%)</option>
+              <option value="1.25">Malå pastorat (1,25%)</option>
+              <option value="1.15">Nordmalings pastorat (1,15%)</option>
+              <option value="1.20">Norsjö pastorat (1,20%)</option>
+              <option value="1.10">Robertsfors pastorat (1,10%)</option>
+              <option value="1.05">Skellefteå pastorat (1,05%)</option>
+              <option value="1.30">Sorsele pastorat (1,30%)</option>
+              <option value="1.25">Storumans pastorat (1,25%)</option>
+              <option value="1.20">Vilhelmina pastorat (1,20%)</option>
+              <option value="1.20">Vindelns pastorat (1,20%)</option>
+              <option value="1.10">Vännäs pastorat (1,10%)</option>
+              <option value="1.35">Åsele pastorat (1,35%)</option>
+              <option value="1.05">Boden pastorat (1,05%)</option>
+              <option value="1.15">Gällivare pastorat (1,15%)</option>
+              <option value="1.10">Haparanda pastorat (1,10%)</option>
+              <option value="1.30">Jokkmokks pastorat (1,30%)</option>
+              <option value="1.10">Kalix pastorat (1,10%)</option>
+              <option value="1.10">Kiruna pastorat (1,10%)</option>
+              <option value="1.05">Luleå pastorat (1,05%)</option>
+              <option value="1.20">Pajala pastorat (1,20%)</option>
+              <option value="1.10">Piteå pastorat (1,10%)</option>
+              <option value="1.20">Älvsbyns pastorat (1,20%)</option>
+              <option value="1.20">Överkalix pastorat (1,20%)</option>
+              <option value="1.20">Övertorneå pastorat (1,20%)</option>
+            </optgroup>
+            <optgroup label="Visby stift (Gotland)">
+              <option value="1.05">Visby domkyrkoförsamling (1,05%)</option>
+              <option value="1.10">Gotlands norra pastorat (1,10%)</option>
+              <option value="1.10">Gotlands östra pastorat (1,10%)</option>
+              <option value="1.15">Gotlands södra pastorat (1,15%)</option>
+              <option value="1.85">Folingbo församling – bland de högsta (1,85%)</option>
             </optgroup>
           </select>
         </div>
-      </div>
-      <div class="field">
-        <label>Eller ange procentsats manuellt</label>
-        <input type="number" id="kyrka-manual" placeholder="t.ex. 1.05" step="0.01" min="0.5" max="2.0" oninput="calc()">
       </div>
     </div>
   </div><!-- /card -->
@@ -550,7 +1088,7 @@ footer {
 
     <!-- NET HERO -->
     <div class="net-hero">
-      <div class="hero-eyebrow">Nettolön per månad</div>
+      <div class="hero-eyebrow">Lön efter skatt / månad</div>
       <div class="hero-amount">
         <span class="amt-num" id="net-num">–</span><span class="amt-unit">kr</span>
       </div>
@@ -568,10 +1106,6 @@ footer {
           <div class="hstat-label">Marginalskatt</div>
           <div class="hstat-val c-amber" id="h-mar">–</div>
         </div>
-        <div class="hstat">
-          <div class="hstat-label">Kyrkoavgift / månad</div>
-          <div class="hstat-val c-gold" id="h-kyrka">Ej aktivt</div>
-        </div>
       </div>
     </div>
 
@@ -580,7 +1114,7 @@ footer {
       <div class="card-label">Skatteberäkning</div>
       <div class="bd-grid">
         <div class="bd-item">
-          <div class="bd-label">Bruttolön / mån</div>
+          <div class="bd-label">Lön innan skatt / mån</div>
           <div class="bd-val" id="b-gross">–</div>
         </div>
         <div class="bd-item pos">
@@ -605,38 +1139,27 @@ footer {
         </div>
         <div class="bd-item gold" id="bd-kyrka-row" style="display:none">
           <div class="bd-label">Kyrkoavgift / mån</div>
-          <div class="bd-val" id="b-kyrka">–</div>
+          <div class="bd-val" id="b-kyrka">0 kr</div>
         </div>
       </div>
 
       <div class="divider"></div>
 
-      <!-- BARS -->
-      <div class="bar-section-label">Fördelning av bruttolön</div>
-      <div class="bar-r">
-        <div class="bar-lbl">Nettolön</div>
-        <div class="bar-track"><div class="bar-fill fi" id="br-net" style="width:0%"></div></div>
-        <div class="bar-pct" id="bp-net">–</div>
-      </div>
-      <div class="bar-r">
-        <div class="bar-lbl">Kommunalskatt</div>
-        <div class="bar-track"><div class="bar-fill fr" id="br-kom" style="width:0%"></div></div>
-        <div class="bar-pct" id="bp-kom">–</div>
-      </div>
-      <div class="bar-r">
-        <div class="bar-lbl">Statlig skatt</div>
-        <div class="bar-track"><div class="bar-fill fb" id="br-stat" style="width:0%"></div></div>
-        <div class="bar-pct" id="bp-stat">–</div>
-      </div>
-      <div class="bar-r" id="kyrka-bar" style="display:none">
-        <div class="bar-lbl">Kyrkoavgift</div>
-        <div class="bar-track"><div class="bar-fill fg" id="br-kyrka" style="width:0%"></div></div>
-        <div class="bar-pct" id="bp-kyrka">–</div>
-      </div>
-      <div class="bar-r">
-        <div class="bar-lbl">Övr. avgifter</div>
-        <div class="bar-track"><div class="bar-fill fa" id="br-other" style="width:0%"></div></div>
-        <div class="bar-pct" id="bp-other">–</div>
+      <!-- PIE CHART -->
+      <div class="bar-section-label">Fördelning av lön innan skatt</div>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <svg id="pie-svg" viewBox="0 0 120 120" width="120" height="120" style="flex-shrink:0;">
+          <circle cx="60" cy="60" r="54" fill="var(--surface2)"/>
+          <g id="pie-slices"></g>
+          <circle cx="60" cy="60" r="34" fill="var(--surface)"/>
+        </svg>
+        <div style="flex:1; min-width:140px;">
+          <div class="pie-legend-row"><span class="pie-dot" style="background:var(--ice)"></span><span class="pie-lbl">Lön efter skatt</span><span class="pie-val" id="bp-net">–</span></div>
+          <div class="pie-legend-row"><span class="pie-dot" style="background:var(--red)"></span><span class="pie-lbl">Kommunalskatt</span><span class="pie-val" id="bp-kom">–</span></div>
+          <div class="pie-legend-row"><span class="pie-dot" style="background:#6E9EC8"></span><span class="pie-lbl">Statlig skatt</span><span class="pie-val" id="bp-stat">–</span></div>
+          <div class="pie-legend-row" id="kyrka-legend" style="display:none"><span class="pie-dot" style="background:var(--gold)"></span><span class="pie-lbl">Kyrkoavgift</span><span class="pie-val" id="bp-kyrka">–</span></div>
+          <div class="pie-legend-row"><span class="pie-dot" style="background:var(--amber)"></span><span class="pie-lbl">Övr. avgifter</span><span class="pie-val" id="bp-other">–</span></div>
+        </div>
       </div>
 
       <div class="divider"></div>
@@ -684,22 +1207,14 @@ footer {
 <script>
 const PBB = 58500, STATE_THRESH = 660400, STATE_THRESH_65 = 760500;
 const BURIAL = 0.00292, EMP = 0.3142;
-let period = 'month', kyrkaOn = false;
-
-function setPeriod(p, btn) {
-  period = p;
-  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('sal-lbl').textContent = p === 'month' ? 'Bruttolön (kr/månad)' : 'Bruttolön (kr/år)';
-  calc();
-}
+let kyrkaOn = false;
 
 function toggleKyrka() {
   kyrkaOn = !kyrkaOn;
   document.getElementById('sw').classList.toggle('on', kyrkaOn);
   document.getElementById('kx').classList.toggle('open', kyrkaOn);
   document.getElementById('bd-kyrka-row').style.display = kyrkaOn ? '' : 'none';
-  document.getElementById('kyrka-bar').style.display    = kyrkaOn ? '' : 'none';
+  document.getElementById('kyrka-legend').style.display = kyrkaOn ? '' : 'none';
   calc();
 }
 
@@ -754,21 +1269,36 @@ function fmt(n)   { return Math.round(n).toLocaleString('sv-SE'); }
 function kr(n)    { return fmt(n) + ' kr'; }
 function pct(n)   { return Math.max(0,n).toFixed(1).replace('.',',') + '%'; }
 
-function setBar(id, vid, v) {
-  document.getElementById(id).style.width = Math.max(0,v).toFixed(1)+'%';
-  document.getElementById(vid).textContent = pct(v);
+function drawPie(slices) {
+  // slices: [{pct, color}, ...]
+  const g = document.getElementById('pie-slices');
+  g.innerHTML = '';
+  const cx = 60, cy = 60, r = 54;
+  let angle = -Math.PI / 2;
+  slices.forEach(s => {
+    if (s.pct <= 0) return;
+    const sweep = (s.pct / 100) * 2 * Math.PI;
+    const x1 = cx + r * Math.cos(angle);
+    const y1 = cy + r * Math.sin(angle);
+    angle += sweep;
+    const x2 = cx + r * Math.cos(angle);
+    const y2 = cy + r * Math.sin(angle);
+    const large = sweep > Math.PI ? 1 : 0;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', `M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2} Z`);
+    path.setAttribute('fill', s.color);
+    path.style.transition = 'all 0.4s ease';
+    g.appendChild(path);
+  });
 }
 
 function calc() {
   const raw   = parseFloat(document.getElementById('salary').value) || 0;
   const kRate = parseFloat(document.getElementById('kommun').value);
   const sr    = document.getElementById('age').value === 'senior';
-  const manKyrka = parseFloat(document.getElementById('kyrka-manual').value);
-  const kyrkaPct = kyrkaOn
-    ? (isNaN(manKyrka)||manKyrka<=0 ? parseFloat(document.getElementById('forsamling').value) : manKyrka)
-    : 0;
+  const kyrkaPct = kyrkaOn ? parseFloat(document.getElementById('forsamling').value) : 0;
 
-  const gy = period === 'month' ? raw*12 : raw;
+  const gy = raw * 12;
   const gm = gy/12;
   if (gy <= 0) return;
 
@@ -794,7 +1324,6 @@ function calc() {
   document.getElementById('h-tax').textContent   = kr(totalM);
   document.getElementById('h-eff').textContent   = pct(eff);
   document.getElementById('h-mar').textContent   = pct(mar);
-  document.getElementById('h-kyrka').textContent = kyrkaOn ? kr(taxKyrka/12) : 'Ej aktivt';
 
   document.getElementById('b-gross').textContent = kr(gm);
   document.getElementById('b-grund').textContent = kr(ga);
@@ -807,17 +1336,28 @@ function calc() {
   document.getElementById('b-kyrka').textContent = kr(taxKyrka/12);
   document.getElementById('emp-cost').textContent = kr(gm*(1+EMP)) + '/mån';
 
-  const ks = (taxKom/gy)*100;
-  const ss = (taxStat/gy)*100;
+  const ks   = (taxKom/gy)*100;
+  const ss   = (taxStat/gy)*100;
   const kyrS = kyrkaOn ? (taxKyrka/gy)*100 : 0;
-  const os = Math.max(0, ((taxBeg-jobbAv)/gy)*100 + 0.4);
-  const ns = Math.max(0, 100-ks-ss-kyrS-os);
+  const os   = Math.max(0, ((taxBeg-jobbAv)/gy)*100 + 0.4);
+  const ns   = Math.max(0, 100-ks-ss-kyrS-os);
 
-  setBar('br-net',   'bp-net',   ns);
-  setBar('br-kom',   'bp-kom',   ks);
-  setBar('br-stat',  'bp-stat',  ss);
-  setBar('br-kyrka', 'bp-kyrka', kyrS);
-  setBar('br-other', 'bp-other', os);
+  // Pie chart
+  drawPie([
+    { pct: ns,   color: 'var(--ice)' },
+    { pct: ks,   color: 'var(--red)' },
+    { pct: ss,   color: '#6E9EC8' },
+    { pct: kyrS, color: 'var(--gold)' },
+    { pct: os,   color: 'var(--amber)' },
+  ]);
+
+  // Legend labels
+  document.getElementById('bp-net').textContent   = pct(ns);
+  document.getElementById('bp-kom').textContent   = pct(ks);
+  document.getElementById('bp-stat').textContent  = pct(ss);
+  document.getElementById('bp-kyrka').textContent = pct(kyrS);
+  document.getElementById('bp-other').textContent = pct(os);
+  document.getElementById('kyrka-legend').style.display = kyrkaOn ? '' : 'none';
 }
 
 calc();

@@ -1240,8 +1240,10 @@ footer {
           <div class="pie-legend-row"><span class="pie-dot" style="background:var(--ice)"></span><span class="pie-lbl">Lön efter skatt</span><span class="pie-val" id="bp-net">–</span></div>
           <div class="pie-legend-row"><span class="pie-dot" style="background:var(--red)"></span><span class="pie-lbl">Kommunalskatt</span><span class="pie-val" id="bp-kom">–</span></div>
           <div class="pie-legend-row"><span class="pie-dot" style="background:#6E9EC8"></span><span class="pie-lbl">Statlig skatt</span><span class="pie-val" id="bp-stat">–</span></div>
+          <div class="pie-legend-row"><span class="pie-dot" style="background:#7DB87A"></span><span class="pie-lbl">Grundavdrag (skattefritt)</span><span class="pie-val" id="bp-grund">–</span></div>
+          <div class="pie-legend-row"><span class="pie-dot" style="background:var(--pine)"></span><span class="pie-lbl">Jobbskatteavdrag</span><span class="pie-val" id="bp-jobb">–</span></div>
+          <div class="pie-legend-row"><span class="pie-dot" style="background:var(--amber)"></span><span class="pie-lbl">Begravningsavgift</span><span class="pie-val" id="bp-beg">–</span></div>
           <div class="pie-legend-row" id="kyrka-legend" style="display:none"><span class="pie-dot" style="background:var(--gold)"></span><span class="pie-lbl">Kyrkoavgift</span><span class="pie-val" id="bp-kyrka">–</span></div>
-          <div class="pie-legend-row"><span class="pie-dot" style="background:var(--amber)"></span><span class="pie-lbl">Övr. avgifter</span><span class="pie-val" id="bp-other">–</span></div>
         </div>
       </div>
 
@@ -1411,25 +1413,38 @@ function calc() {
   document.getElementById('b-kyrka').textContent = kr(taxKyrka/12);
   document.getElementById('emp-cost').textContent = kr(gm*(1+EMP)) + '/mån';
 
-  const ks   = (taxKom/gy)*100;
-  const ss   = (taxStat/gy)*100;
-  const kyrS = kyrkaOn ? (taxKyrka/gy)*100 : 0;
-  const os   = Math.max(0, ((taxBeg-jobbAv)/gy)*100 + 0.4);
-  const ns   = Math.max(0, 100-ks-ss-kyrS-os);
+  // ── PIE CHART ─────────────────────────────────────────────────────
+  // Dela upp bruttolönen i exakta segment som summerar till 100%.
+  // Logik: brutto = nettolön + kommunalskatt(brutto) - jobbskatteavdrag + statlig skatt + begravningsavgift + kyrkoavgift
+  // Kommunalskatt(brutto) = taxKomBase * rate = (gy - ga) * rate
+  // Vi visar grundavdraget som en skattefri del (det som "sparas" jämfört med om hela lönen beskattades)
+  // och jobbskatteavdraget som en rabatt-del.
+
+  const grundPct  = (ga / gy) * 100;                          // skattefri del via grundavdrag
+  const jobbPct   = (jobbAv / gy) * 100;                      // rabatt via jobbskatteavdrag
+  const komPct    = (taxKom / gy) * 100;                       // kommunalskatt betald
+  const statPct   = (taxStat / gy) * 100;                      // statlig skatt betald
+  const begPct    = (taxBeg / gy) * 100;                       // begravningsavgift
+  const kyrkaPct2 = (taxKyrka / gy) * 100;                     // kyrkoavgift
+  const netPct    = (netY / gy) * 100;                         // lön efter skatt
 
   drawPie([
-    { pct: ns,   color: 'var(--ice)' },
-    { pct: ks,   color: 'var(--red)' },
-    { pct: ss,   color: '#6E9EC8' },
-    { pct: kyrS, color: 'var(--gold)' },
-    { pct: os,   color: 'var(--amber)' },
+    { pct: netPct,   color: 'var(--ice)' },
+    { pct: komPct,   color: 'var(--red)' },
+    { pct: statPct,  color: '#6E9EC8' },
+    { pct: grundPct, color: '#7DB87A' },
+    { pct: jobbPct,  color: 'var(--pine)' },
+    { pct: begPct,   color: 'var(--amber)' },
+    { pct: kyrkaPct2, color: 'var(--gold)' },
   ]);
 
-  document.getElementById('bp-net').textContent   = pct(ns);
-  document.getElementById('bp-kom').textContent   = pct(ks);
-  document.getElementById('bp-stat').textContent  = pct(ss);
-  document.getElementById('bp-kyrka').textContent = pct(kyrS);
-  document.getElementById('bp-other').textContent = pct(os);
+  document.getElementById('bp-net').textContent   = pct(netPct);
+  document.getElementById('bp-kom').textContent   = pct(komPct);
+  document.getElementById('bp-stat').textContent  = pct(statPct);
+  document.getElementById('bp-grund').textContent = pct(grundPct);
+  document.getElementById('bp-jobb').textContent  = pct(jobbPct);
+  document.getElementById('bp-beg').textContent   = pct(begPct);
+  document.getElementById('bp-kyrka').textContent = pct(kyrkaPct2);
   document.getElementById('kyrka-legend').style.display = kyrkaOn ? '' : 'none';
 }
 

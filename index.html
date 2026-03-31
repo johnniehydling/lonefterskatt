@@ -429,36 +429,6 @@ select option { background: #1E2023; }
 .bd-item.neg .bd-val  { color: var(--red); }
 .bd-item.gold .bd-val { color: var(--gold); }
 
-/* ─── BARS ───────────────────────────────────────── */
-.bar-section-label {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink3); margin-bottom: 14px;
-}
-.bar-r {
-  display: flex; align-items: center;
-  gap: 10px; margin-bottom: 9px;
-}
-.bar-lbl { width: 116px; font-size: 12px; color: var(--ink2); flex-shrink: 0; }
-.bar-track {
-  flex: 1; height: 5px;
-  background: var(--surface3); border-radius: 99px; overflow: hidden;
-}
-.bar-fill {
-  height: 100%; border-radius: 99px;
-  transition: width 0.45s cubic-bezier(0.4,0,0.2,1);
-}
-.fi   { background: var(--ice); }
-.fr   { background: var(--red); }
-.fb   { background: #6E9EC8; }
-.fa   { background: var(--amber); }
-.fg   { background: var(--gold); }
-.bar-pct {
-  width: 42px; text-align: right;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px; color: var(--ink3);
-}
-
 /* ─── EMPLOYER ───────────────────────────────────── */
 .emp-box {
   background: var(--amber-dim);
@@ -1231,11 +1201,11 @@ footer {
           <div class="bd-val" id="b-gross">–</div>
         </div>
         <div class="bd-item pos">
-          <div class="bd-label">Grundavdrag / år</div>
+          <div class="bd-label">Grundavdrag / mån</div>
           <div class="bd-val" id="b-grund">–</div>
         </div>
         <div class="bd-item pos">
-          <div class="bd-label">Jobbskatteavdrag / år</div>
+          <div class="bd-label">Jobbskatteavdrag / mån</div>
           <div class="bd-val" id="b-jobb">–</div>
         </div>
         <div class="bd-item neg">
@@ -1314,9 +1284,8 @@ footer {
 
 <footer>
   Beräkningarna bygger på Skatteverkets och SCBs officiella skattesatser samt Svenska kyrkans kyrkoavgifter för 2026.<br>
-  Resultaten är uppskattningar – kontakta Skatteverket för exakt besked. 
+  Resultaten är uppskattningar – kontakta Skatteverket för exakt besked.
   <a href="/integritetspolicy.html">Integritetspolicy</a>
-
 </footer>
 
 <script>
@@ -1337,7 +1306,6 @@ function toggleKyrka() {
   calc();
 }
 
-// ── GRUNDAVDRAG under 66 år (2026) ───────────────────────────────────
 function grundavdragNormal(y) {
   if (y <= 0)      return 0;
   if (y <= 44200)  return y;
@@ -1348,25 +1316,14 @@ function grundavdragNormal(y) {
   return 15400;
 }
 
-// ── FÖRHÖJT GRUNDAVDRAG 66+ år (2026, Skatteverkets tabell) ──────────
-// Tabellen visar: under 65 700 kr = avdrag = hela inkomsten (skattefri)
-// Sedan stiger avdraget successivt med inkomsten.
-// Baserat på Skatteverkets officiella tabell bilaga 2, 2026.
-// Approximerad som formel utifrån tabellens mönster:
-//   0 – 65 700:     avdrag = inkomst (skattefri)
-//   65 700 – 116 400: stiger från ~65 700 till ~79 000 (ökning 0,249 per kr)
-//   116 400 – 210 000: stiger snabbare mot max ~122 000
-//   210 000 – 430 000: platå ~122 000 (max)
-//   430 000 – 700 000: minskar gradvis mot ~37 000
-//   > 700 000:        ~37 000 (minimum)
 function grundavdragSenior(y) {
   if (y <= 0)       return 0;
-  if (y <= 65700)   return y;                          // helt skattefri inkomst
-  if (y <= 116400)  return 65700 + (y - 65700) * 0.249;  // stiger mot ~78 300
-  if (y <= 210000)  return 78300 + (y - 116400) * 0.470; // stiger mot ~122 300
-  if (y <= 430000)  return 122300;                    // max-platå
-  if (y <= 700000)  return 122300 - (y - 430000) * (85300/270000); // minskar
-  return 37000;                                        // minimum
+  if (y <= 65700)   return y;
+  if (y <= 116400)  return 65700 + (y - 65700) * 0.249;
+  if (y <= 210000)  return 78300 + (y - 116400) * 0.470;
+  if (y <= 430000)  return 122300;
+  if (y <= 700000)  return 122300 - (y - 430000) * (85300/270000);
+  return 37000;
 }
 
 function grundavdrag(y, senior) {
@@ -1389,7 +1346,6 @@ function kr(n)    { return fmt(n) + ' kr'; }
 function pct(n)   { return Math.max(0,n).toFixed(1).replace('.',',') + '%'; }
 
 function drawPie(slices) {
-  // slices: [{pct, color}, ...]
   const g = document.getElementById('pie-slices');
   g.innerHTML = '';
   const cx = 60, cy = 60, r = 54;
@@ -1445,10 +1401,10 @@ function calc() {
   document.getElementById('h-mar').textContent   = pct(mar);
 
   document.getElementById('b-gross').textContent = kr(gm);
-  document.getElementById('b-grund').textContent = kr(ga);
+  document.getElementById('b-grund').textContent = kr(ga/12);
   document.querySelector('#b-grund').closest('.bd-item').querySelector('.bd-label').textContent =
-    sr ? 'Förhöjt grundavdrag / år' : 'Grundavdrag / år';
-  document.getElementById('b-jobb').textContent  = kr(jobbAv);
+    sr ? 'Förhöjt grundavdrag / mån' : 'Grundavdrag / mån';
+  document.getElementById('b-jobb').textContent  = kr(jobbAv/12);
   document.getElementById('b-kom').textContent   = kr(taxKom/12);
   document.getElementById('b-stat').textContent  = kr(taxStat/12);
   document.getElementById('b-beg').textContent   = kr(taxBeg/12);
@@ -1461,7 +1417,6 @@ function calc() {
   const os   = Math.max(0, ((taxBeg-jobbAv)/gy)*100 + 0.4);
   const ns   = Math.max(0, 100-ks-ss-kyrS-os);
 
-  // Pie chart
   drawPie([
     { pct: ns,   color: 'var(--ice)' },
     { pct: ks,   color: 'var(--red)' },
@@ -1470,7 +1425,6 @@ function calc() {
     { pct: os,   color: 'var(--amber)' },
   ]);
 
-  // Legend labels
   document.getElementById('bp-net').textContent   = pct(ns);
   document.getElementById('bp-kom').textContent   = pct(ks);
   document.getElementById('bp-stat').textContent  = pct(ss);

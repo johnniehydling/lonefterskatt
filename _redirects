@@ -1,5 +1,45 @@
-# Regel 1: Servera .html-URLs direkt utan loop (matchar först)
-/lon-efter-skatt-*.html  /lon-efter-skatt-:splat.html  200
+# Kommun-sidor (utan .html -> med .html)
+/lon-efter-skatt-stockholm    /lon-efter-skatt-stockholm.html    301!
+/lon-efter-skatt-goteborg     /lon-efter-skatt-goteborg.html     301!
+/lon-efter-skatt-malmo        /lon-efter-skatt-malmo.html        301!
+/lon-efter-skatt-uppsala      /lon-efter-skatt-uppsala.html      301!
+/lon-efter-skatt-linkoping    /lon-efter-skatt-linkoping.html    301!
+/lon-efter-skatt-vasteras     /lon-efter-skatt-vasteras.html     301!
+/lon-efter-skatt-orebro       /lon-efter-skatt-orebro.html       301!
+/lon-efter-skatt-helsingborg  /lon-efter-skatt-helsingborg.html  301!
+/lon-efter-skatt-jonkoping    /lon-efter-skatt-jonkoping.html    301!
+/lon-efter-skatt-norrkoping   /lon-efter-skatt-norrkoping.html   301!
+/lon-efter-skatt-lund         /lon-efter-skatt-lund.html         301!
+/lon-efter-skatt-umea         /lon-efter-skatt-umea.html         301!
+/lon-efter-skatt-gavle        /lon-efter-skatt-gavle.html        301!
+/lon-efter-skatt-boras        /lon-efter-skatt-boras.html        301!
+/lon-efter-skatt-eskilstuna   /lon-efter-skatt-eskilstuna.html   301!
+/lon-efter-skatt-sodertalje   /lon-efter-skatt-sodertalje.html   301!
+/lon-efter-skatt-karlstad     /lon-efter-skatt-karlstad.html     301!
+/lon-efter-skatt-taby         /lon-efter-skatt-taby.html         301!
+/lon-efter-skatt-vaxjo        /lon-efter-skatt-vaxjo.html        301!
+/lon-efter-skatt-halmstad     /lon-efter-skatt-halmstad.html     301!
+/lon-efter-skatt-sundsvall    /lon-efter-skatt-sundsvall.html    301!
+/lon-efter-skatt-lulea        /lon-efter-skatt-lulea.html        301!
+/lon-efter-skatt-nacka        /lon-efter-skatt-nacka.html        301!
+/lon-efter-skatt-solna        /lon-efter-skatt-solna.html        301!
+/lon-efter-skatt-huddinge     /lon-efter-skatt-huddinge.html     301!
+/lon-efter-skatt-jarfalla     /lon-efter-skatt-jarfalla.html     301!
+/lon-efter-skatt-kungsbacka   /lon-efter-skatt-kungsbacka.html   301!
+/lon-efter-skatt-lidingo      /lon-efter-skatt-lidingo.html      301!
 
-# Regel 2: Redirect URL:er UTAN .html till motsvarande .html-version
-/lon-efter-skatt-*  /lon-efter-skatt-:splat.html  301!
+# Inkomst-sidor
+/lon-efter-skatt-20000        /lon-efter-skatt-20000.html        301!
+/lon-efter-skatt-25000        /lon-efter-skatt-25000.html        301!
+/lon-efter-skatt-30000        /lon-efter-skatt-30000.html        301!
+/lon-efter-skatt-35000        /lon-efter-skatt-35000.html        301!
+/lon-efter-skatt-40000        /lon-efter-skatt-40000.html        301!
+/lon-efter-skatt-45000        /lon-efter-skatt-45000.html        301!
+/lon-efter-skatt-50000        /lon-efter-skatt-50000.html        301!
+/lon-efter-skatt-55000        /lon-efter-skatt-55000.html        301!
+/lon-efter-skatt-60000        /lon-efter-skatt-60000.html        301!
+/lon-efter-skatt-65000        /lon-efter-skatt-65000.html        301!
+/lon-efter-skatt-70000        /lon-efter-skatt-70000.html        301!
+/lon-efter-skatt-80000        /lon-efter-skatt-80000.html        301!
+/lon-efter-skatt-90000        /lon-efter-skatt-90000.html        301!
+/lon-efter-skatt-100000       /lon-efter-skatt-100000.html       301!

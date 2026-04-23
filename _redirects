@@ -1,2 +1,5 @@
-# Tvinga .html på alla lön-efter-skatt-sidor
-/lon-efter-skatt-*  /lon-efter-skatt-:splat.html  301
+# Regel 1: Servera .html-URLs direkt utan loop (matchar först)
+/lon-efter-skatt-*.html  /lon-efter-skatt-:splat.html  200
+
+# Regel 2: Redirect URL:er UTAN .html till motsvarande .html-version
+/lon-efter-skatt-*  /lon-efter-skatt-:splat.html  301!

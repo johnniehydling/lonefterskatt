@@ -160,9 +160,9 @@ def generate_page(salary, kommun):
     )
     canonical = f"https://lonefterskatt.com/lon-efter-skatt-{sal_no_space}-{slug}.html"
 
-    # Välj 5 relaterade kommuner (exclude current)
-    all_sorted = sorted(KOMMUNER, key=lambda x: x["rate"])
-    related = [k for k in all_sorted if k["slug"] != slug][:5]
+    # Välj 5 relaterade kommuner med närmast skattesats
+    all_sorted = sorted([k for k in KOMMUNER if k["slug"] != slug], key=lambda x: abs(x["rate"] - rate))
+    related = all_sorted[:5]
 
     related_cards_html = ""
     for rk in related:

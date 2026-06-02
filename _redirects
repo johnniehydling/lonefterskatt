@@ -1,3 +1,6 @@
+# www -> non-www (konsoliderar länkkraft)
+https://www.lonefterskatt.com/* https://lonefterskatt.com/:splat 301!
+
 # Kommun-sidor (utan .html -> med .html)
 /lon-efter-skatt-stockholm    /lon-efter-skatt-stockholm.html    301!
 /lon-efter-skatt-goteborg     /lon-efter-skatt-goteborg.html     301!

@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:bostad.stockholm.se)",
+      "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\nContent-Type: %{content_type}\\\\n\" \"https://bostad.stockholm.se/Lista/AllaAnnonser\")",
+      "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\nContent-Type: %{content_type}\\\\n\" -X POST \"https://bostad.stockholm.se/statistik/statistiktjansten/RenderApartmentList/\" -H \"Content-Type: application/json\" -d '{}')",
+      "Bash(curl -sI \"https://bostad.stockholm.se/\")",
+      "Bash(curl -s \"https://bostad.stockholm.se/statistik/senaste-manaden/\")",
+      "Bash(curl -s \"https://bostad.stockholm.se/static/scripts-c178b64a89.js\")",
+      "Bash(curl -s \"https://bostad.stockholm.se/static/vendor-scripts-7c907eb173.js\")",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://bostad.stockholm.se/statistik/data/senaste-manaden/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://bostad.stockholm.se/statistik/data/omraden\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://bostad.stockholm.se/statistik/data/hyra-per-omrade\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://bostad.stockholm.se/statistik/data/kotid-per-omrade\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://bostad.stockholm.se/AllaAnnonser/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://bostad.stockholm.se/api/v1/LedigaJobb\")",
+      "Bash(curl -s \"https://bostad.stockholm.se/AllaAnnonser/\" -w \"\\\\nHTTP_STATUS:%{http_code}\\\\nCONTENT_TYPE:%{content_type}\\\\n\")",
+      "Bash(curl -s \"https://bostad.stockholm.se/api/v1/LedigaJobb\" -w \"\\\\nHTTP_STATUS:%{http_code}\\\\nCONTENT_TYPE:%{content_type}\\\\n\")",
+      "Bash(curl -s \"https://bostad.stockholm.se/AllaAnnonser/\")",
+      "Bash(curl -sv \"https://bostad.stockholm.se/statistik/data/senaste-manaden/\")",
+      "Bash(curl -s https://bostad.stockholm.se/statistik/data/senaste-manaden/ -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://bostad.stockholm.se/statistik/senaste-manaden/' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -s https://bostad.stockholm.se/statistik/data/omraden -H 'Accept: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://bostad.stockholm.se/statistik/' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -s 'https://bostad.stockholm.se/statistik/data/senaste-manaden/?queue=Bostadskön&page=1&sort=kotid' -H 'Accept: application/json' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -s 'https://bostad.stockholm.se/statistik/data/omraden?year=2025&queue=Bostadskön' -H 'Accept: application/json' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -sc /tmp/bfcookies.txt \"https://bostad.stockholm.se/statistik/hyra-och-kotid-per-omrade/\" -o /dev/null)",
+      "Bash(curl -s 'https://bostad.stockholm.se/statistik/data/omraden?year=2025&queue=Bostadsk%C3%B6n' -b /tmp/bfcookies.txt -H 'Accept: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://bostad.stockholm.se/statistik/hyra-och-kotid-per-omrade/' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -s 'https://bostad.stockholm.se/statistik/data/senaste-manaden/?queue=Bostadsk%C3%B6n&page=1&sort=kotid' -b /tmp/bfcookies.txt -H 'Accept: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://bostad.stockholm.se/statistik/senaste-manaden/' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -s 'https://bostad.stockholm.se/statistik/data/kotid-per-omrade?apartmentType=&area=&buildingType=&queue=Bostadsk%C3%B6n&rooms=&year=2025' -b /tmp/bfcookies.txt -H 'Accept: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://bostad.stockholm.se/statistik/hyra-och-kotid-per-omrade/')",
+      "Bash(curl -s 'https://bostad.stockholm.se/statistik/data/hyra-per-omrade-bostader?apartmentType=&area=Stockholm&buildingType=&queue=Bostadsk%C3%B6n&rooms=&year=2025&page=1&sort=kotid&group=' -b /tmp/bfcookies.txt -H 'Accept: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://bostad.stockholm.se/statistik/hyra-och-kotid-per-omrade/')",
+      "Bash(curl -sI \"https://bostad.stockholm.se/AllaAnnonser/\")",
+      "Bash(curl -s 'https://bostad.stockholm.se/statistik/data/senaste-manaden/?queue=Bostadsk%C3%B6n&page=147&sort=kotid' -b /tmp/bfcookies.txt -H 'Accept: application/json' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: https://bostad.stockholm.se/statistik/senaste-manaden/')",
+      "Bash(curl -s 'https://bostad.stockholm.se/SokOmraden?s=Stock' -b /tmp/bfcookies.txt -w '\\\\nHTTP_STATUS:%{http_code}\\\\nCONTENT_TYPE:%{content_type}\\\\n')",
+      "Bash(chmod +x /Users/johnniehydling/Documents/bostadskartan/start.sh)",
+      "Bash(python3 -m venv .venv)",
+      "Bash(.venv/bin/pip install *)",
+      "Bash(npm install *)",
+      "Bash(command -v npm)",
+      "Bash(.venv/bin/python -c ' *)",
+      "Bash(.venv/bin/python seed_historical.py)",
+      "Bash(.venv/bin/python -)"
+    ],
+    "additionalDirectories": [
+      "/Users/johnniehydling/Documents/bostadskartan/backend",
+      "/Users/johnniehydling/Documents/bostadskartan/frontend",
+      "/Users/johnniehydling/Documents/bostadskartan",
+      "/Users/johnniehydling/Documents/PlumpApp/Plump/Plump.xcodeproj"
+    ]
+  }
+}

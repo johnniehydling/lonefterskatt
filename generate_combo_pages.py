@@ -160,9 +160,44 @@ def generate_page(salary, kommun):
     )
     canonical = f"https://lonefterskatt.com/lon-efter-skatt-{sal_no_space}-{slug}.html"
 
-    # Välj 5 relaterade kommuner med närmast skattesats
-    all_sorted = sorted([k for k in KOMMUNER if k["slug"] != slug], key=lambda x: abs(x["rate"] - rate))
-    related = all_sorted[:5]
+    # Välj relaterade kommuner baserat på grannkommuner
+    NEIGHBORS = {
+        'stockholm':   ['solna', 'nacka', 'jarfalla', 'huddinge', 'lidingo', 'danderyd'],
+        'goteborg':    ['kungsbacka', 'boras', 'halmstad'],
+        'malmo':       ['lund', 'helsingborg'],
+        'uppsala':     ['stockholm', 'vasteras', 'eskilstuna'],
+        'vasteras':    ['eskilstuna', 'orebro', 'uppsala'],
+        'orebro':      ['karlskoga', 'karlstad', 'eskilstuna'],
+        'linkoping':   ['norrkoping', 'jonkoping'],
+        'helsingborg': ['malmo', 'lund'],
+        'jonkoping':   ['linkoping', 'boras', 'vaxjo'],
+        'norrkoping':  ['linkoping', 'stockholm'],
+        'lund':        ['malmo', 'helsingborg'],
+        'umea':        ['sundsvall', 'lulea'],
+        'gavle':       ['sundsvall', 'uppsala'],
+        'boras':       ['goteborg', 'jonkoping', 'kungsbacka'],
+        'sundsvall':   ['gavle', 'umea'],
+        'eskilstuna':  ['vasteras', 'orebro', 'stockholm'],
+        'halmstad':    ['kungsbacka', 'goteborg', 'helsingborg'],
+        'karlstad':    ['orebro', 'karlskoga'],
+        'nacka':       ['stockholm', 'lidingo', 'huddinge', 'sodertalje'],
+        'lulea':       ['umea', 'sundsvall'],
+        'sodertalje':  ['stockholm', 'huddinge', 'nacka'],
+        'huddinge':    ['stockholm', 'sodertalje', 'nacka', 'jarfalla'],
+        'solna':       ['stockholm', 'jarfalla', 'danderyd', 'sollentuna'],
+        'jarfalla':    ['stockholm', 'solna', 'sollentuna'],
+        'taby':        ['danderyd', 'osteraker', 'sollentuna'],
+        'danderyd':    ['stockholm', 'taby', 'lidingo', 'sollentuna'],
+        'lidingo':     ['stockholm', 'nacka', 'danderyd'],
+        'sollentuna':  ['stockholm', 'jarfalla', 'danderyd', 'taby'],
+        'osteraker':   ['taby', 'sollentuna', 'danderyd'],
+        'karlskoga':   ['orebro', 'karlstad'],
+        'vaxjo':       ['jonkoping', 'boras', 'malmo'],
+        'kungsbacka':  ['goteborg', 'halmstad', 'boras'],
+    }
+    neighbor_slugs = NEIGHBORS.get(slug, [])
+    kommuner_by_slug = {k['slug']: k for k in KOMMUNER}
+    related = [kommuner_by_slug[s] for s in neighbor_slugs if s in kommuner_by_slug]
 
     related_cards_html = ""
     for rk in related:

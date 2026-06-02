@@ -38,7 +38,8 @@
       "Bash(command -v npm)",
       "Bash(.venv/bin/python -c ' *)",
       "Bash(.venv/bin/python seed_historical.py)",
-      "Bash(.venv/bin/python -)"
+      "Bash(.venv/bin/python -)",
+      "Bash(python3 add_commune_links_to_salary_pages.py)"
     ],
     "additionalDirectories": [
       "/Users/johnniehydling/Documents/bostadskartan/backend",

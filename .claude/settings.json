@@ -39,7 +39,15 @@
       "Bash(.venv/bin/python -c ' *)",
       "Bash(.venv/bin/python seed_historical.py)",
       "Bash(.venv/bin/python -)",
-      "Bash(python3 add_commune_links_to_salary_pages.py)"
+      "Bash(python3 add_commune_links_to_salary_pages.py)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:alvinlindstam.github.io)",
+      "Bash(python -c \"import pyproj; print\\('pyproj OK'\\)\")",
+      "Bash(.venv/bin/python -c \"import pyproj; print\\('pyproj OK'\\)\")",
+      "Bash(.venv/bin/python import_bostadsdata.py)",
+      "Bash(crontab -l)"
     ],
     "additionalDirectories": [
       "/Users/johnniehydling/Documents/bostadskartan/backend",
